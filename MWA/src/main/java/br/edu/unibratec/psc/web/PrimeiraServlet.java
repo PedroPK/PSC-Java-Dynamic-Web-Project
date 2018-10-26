@@ -2,6 +2,7 @@ package br.edu.unibratec.psc.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,7 @@ public class PrimeiraServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 		System.out.println("doGet() executado.");
 		
-		printHTML(pResponse, "doGet()");
+		printHTML(pRequest, pResponse, "doGet()", null);
 	}
 	
 	@Override
@@ -38,11 +39,17 @@ public class PrimeiraServlet extends HttpServlet {
 	protected void service(HttpServletRequest pRequest, HttpServletResponse pResponse) throws IOException, ServletException {
 		System.out.println("Service() executado.");
 		
-		printHTML(pResponse, "service()");
+		Enumeration<String> parametros = pRequest.getParameterNames();
 		
+		printHTML(pRequest, pResponse, "service()", parametros);
 	}
 	
-	private void printHTML(HttpServletResponse pResponse, String pHttpMethodExecuted) throws IOException {
+	private void printHTML(
+		HttpServletRequest		pRequest, 
+		HttpServletResponse		pResponse, 
+		String					pHttpMethodExecuted, 
+		Enumeration<String>		pNomesParametros)
+	throws IOException {
 		PrintWriter writer = pResponse.getWriter();
 		
 		writer.println("<html>");
@@ -53,6 +60,15 @@ public class PrimeiraServlet extends HttpServlet {
 			writer.println("</head>");
 			writer.println("<body>");
 				writer.println("Hi, Folks! " + pHttpMethodExecuted + " method was executed!" );
+				if ( pNomesParametros != null) {
+					while ( pNomesParametros.hasMoreElements() ) {
+						String nomeParametro = pNomesParametros.nextElement();
+						writer.println("<br><br>" );
+						writer.println("Nome dos Parâmetro: "	+ nomeParametro );
+						writer.println("<br>" );
+						writer.println("Valor dos Parâmetro: "	+ pRequest.getParameter(nomeParametro) );
+					}
+				}
 			writer.println("</body>");
 		writer.println("</html>");
 	}
