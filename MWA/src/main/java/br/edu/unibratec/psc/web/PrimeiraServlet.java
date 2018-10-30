@@ -2,8 +2,6 @@ package br.edu.unibratec.psc.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -15,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/PrimeiraServlet")
 public class PrimeiraServlet extends HttpServlet {
 	
-	public static final String NM_ATRIBUTO_DATA_HORA = "dataHora";
-	
-	private static final String JSP_HELLO = "/hello.jsp";
+	private static final String JSP_HELLO = "/jsp/hello.jsp";
 	/**
 	 * - Serial Version UID
 	 */
@@ -36,14 +32,22 @@ public class PrimeiraServlet extends HttpServlet {
 		
 		//printHTML(pRequest, pResponse, "service()", parametros);
 		
-		String dataHora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
-		System.out.println(dataHora);
-		
+		String dataHora = UtilServlet.getDataHoraHojeAgora();
 		
 		//pResponse.sendRedirect(JSP_HELLO);
 		
-		pRequest.setAttribute(NM_ATRIBUTO_DATA_HORA, dataHora);
-		pRequest.getRequestDispatcher(JSP_HELLO).forward(pRequest, pResponse);
+		Enumeration<String> parametros = pRequest.getParameterNames();
+		while ( parametros.hasMoreElements() ) {
+			String parametro = parametros.nextElement();
+			String valor = pRequest.getParameter(parametro);
+			
+			pRequest.setAttribute(parametro, valor);
+		}
+		String valorDoParametro = pRequest.getParameter("NOME_DO_PARAMETRO");
+		
+		pRequest.setAttribute(UtilServlet.NM_ATRIBUTO_DATA_HORA, dataHora);
+		
+		UtilServlet.redirecionar(pRequest, pResponse, JSP_HELLO);
 	}
 	
 	@Override
