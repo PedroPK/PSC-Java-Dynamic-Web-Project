@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CadastroServlet
  */
-@WebServlet("/CadastroServlet")
+@WebServlet("/Cadastro")
 public class CadastroServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -51,11 +51,7 @@ public class CadastroServlet extends HttpServlet {
 			while ( iteratorChaves.hasNext() ) {
 				String chave = iteratorChaves.next();
 				
-				String[] parametro = parametros.get(chave);
-				String param = "";
-				for ( int i = 0; i < parametro.length; i = i + 1 ) {
-					param = param + parametro[i];
-				}
+				String parametro = request.getParameter(chave);
 				
 				System.out.println(chave + ": " + parametro);
 			}

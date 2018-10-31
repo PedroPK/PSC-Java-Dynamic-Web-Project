@@ -6,7 +6,7 @@
 		<title>Tela de Cadastro</title>
 	</head>
 	<body>
-		<form class="form-inline" style="margin: 20px 0" action="/MWA/CadastroServlet" method="post">
+		<form class="form-inline" style="margin: 20px 0" action="/MWA/Cadastro" method="post">
 			<div class="form-group">
 				<table>
 					<tbody>
