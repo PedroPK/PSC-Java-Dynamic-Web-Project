@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ServletJSTL")
 public class ServletJSTL extends HttpServlet {
 	
-	public static final String NM_ATRIBUTO_LISTA_ITENS = "lista";
+	public static final String NM_ATRIBUTO_DEVE_IMPRIMIR_LISTA = "deveImprimirLista";
+	
 	private static final String URL_JSP_JSTL = "/jsp/jstl.jsp";
 	private static final long serialVersionUID = 1L;
 	
@@ -31,14 +32,13 @@ public class ServletJSTL extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
-		List<String> lista = new ArrayList<String>();
-		lista.add("Item 01");
-		lista.add("Item 02");
-		lista.add("Item 03");
-		lista.add("Item 04");
+		UtilServlet.setListaNoRequest(pRequest);
 		
+		boolean deveImprimirLista = false;
+		
+		pRequest.setAttribute(NM_ATRIBUTO_DEVE_IMPRIMIR_LISTA, deveImprimirLista);
 		pRequest.setAttribute(UtilServlet.NM_ATRIBUTO_DATA_HORA, UtilServlet.getDataHoraHojeAgora());
-		pRequest.setAttribute(NM_ATRIBUTO_LISTA_ITENS, lista);
+		
 		
 		UtilServlet.redirecionar(pRequest, pResponse, URL_JSP_JSTL);
 	}

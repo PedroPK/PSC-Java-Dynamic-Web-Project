@@ -13,11 +13,13 @@
 	</head>
 	<body>
 		Hora certa: ${dataHora}
-		<ul>
-			<%List<String> lista = (List<String>) request.getAttribute(ServletJSTL.NM_ATRIBUTO_LISTA_ITENS);%>
-			<c:forEach items="${lista}" var="item">
-				<li>${item}</li>
-			</c:forEach>
-		</ul>
+		<c:if test="${deveImprimirLista}">
+			<ul>
+				<%List<String> lista = (List<String>) request.getAttribute(ServletJSTL.NM_ATRIBUTO_LISTA_ITENS);%>
+				<c:forEach items="${lista}" var="item">
+					<li>${item}</li>
+				</c:forEach>
+			</ul>
+		</c:if>
 	</body>
 </html>

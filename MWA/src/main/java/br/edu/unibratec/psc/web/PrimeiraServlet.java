@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PrimeiraServlet extends HttpServlet {
 	
 	private static final String JSP_HELLO = "/jsp/hello.jsp";
+	
 	/**
 	 * - Serial Version UID
 	 */
