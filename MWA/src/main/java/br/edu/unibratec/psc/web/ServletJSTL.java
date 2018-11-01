@@ -1,14 +1,14 @@
 package br.edu.unibratec.psc.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static br.edu.unibratec.psc.web.UtilServlet.*;
 
 /**
  * Servlet implementation class ServletJSTL
@@ -32,15 +32,19 @@ public class ServletJSTL extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
-		UtilServlet.setListaNoRequest(pRequest);
+		setListaNoRequest(pRequest);
 		
 		boolean deveImprimirLista = false;
+		String paramDeveImprimir = pRequest.getParameter(NM_ATRIBUTO_DEVE_IMPRIMIR_LISTA);
+		if (	isBooleanValido(paramDeveImprimir)		) {
+			deveImprimirLista = Boolean.parseBoolean(paramDeveImprimir);
+		}
 		
 		pRequest.setAttribute(NM_ATRIBUTO_DEVE_IMPRIMIR_LISTA, deveImprimirLista);
 		pRequest.setAttribute(UtilServlet.NM_ATRIBUTO_DATA_HORA, UtilServlet.getDataHoraHojeAgora());
 		
 		
-		UtilServlet.redirecionar(pRequest, pResponse, URL_JSP_JSTL);
+		redirecionar(pRequest, pResponse, URL_JSP_JSTL);
 	}
 	
 	/**

@@ -32,7 +32,7 @@ public class UtilServlet {
 		pRequest.setAttribute(NM_ATRIBUTO_LISTA_ITENS, lista);
 	}
 	
-	private static List<String> getLista() {
+	public static List<String> getLista() {
 		List<String> lista = new ArrayList<String>();
 		lista.add("Item 01");
 		lista.add("Item 02");
@@ -40,4 +40,17 @@ public class UtilServlet {
 		lista.add("Item 04");
 		return lista;
 	}
+	
+	public static boolean isBooleanValido(String pBoolean) {
+		return isStringValida(pBoolean) &&
+				(
+					pBoolean.toLowerCase().equals(Boolean.TRUE.toString().toLowerCase())	||
+					pBoolean.toLowerCase().equals(Boolean.FALSE.toString().toLowerCase())
+				);
+	}
+	
+	public static boolean isStringValida(String pString) {
+		return pString != null && !pString.isEmpty();
+	}
+	
 }

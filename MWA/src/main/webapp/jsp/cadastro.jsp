@@ -1,3 +1,4 @@
+<%@page import="br.edu.unibratec.psc.web.CadastroServlet"%>
 <%@page		language="java"	contentType="text/html; charset=UTF-8"		pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,9 @@
 								Nome:
 							</td>
 							<td>
-								<input type="text" id="nome" name="nome" class="form-control" placeholder="Nome"/>
+								<input type="text" id="<%=CadastroServlet.NM_PARAMETRO_NOME%>" 
+										name="<%=CadastroServlet.NM_PARAMETRO_NOME%>" 
+										class="form-control" placeholder="Nome"/>
 							</td>
 						</tr>
 						<tr>
@@ -23,7 +26,9 @@
 								CPF:
 							</td>
 							<td>
-								<input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"/>
+								<input type="text" id="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
+										name="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
+										class="form-control" placeholder="CPF"/>
 							</td>
 						</tr>
 						<tr>
@@ -31,7 +36,9 @@
 								Data de Nascimento:
 							</td>
 							<td>
-								<input type="text" id="dtNascimento" name="dtNascimento" class="form-control" placeholder="Data de Nascimento"/>
+								<input type="text" id="<%=CadastroServlet.NM_PARAMETRO_DATA_NASCIMENTO%>" 
+										name="<%=CadastroServlet.NM_PARAMETRO_DATA_NASCIMENTO%>" 
+										class="form-control" placeholder="Data de Nascimento"/>
 							</td>
 						</tr>
 						<tr>

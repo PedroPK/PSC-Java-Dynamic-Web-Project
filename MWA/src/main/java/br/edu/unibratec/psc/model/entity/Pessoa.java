@@ -98,5 +98,11 @@ public class Pessoa implements EntityInterface {
 	public Object getPrimaryKey() {
 		return getCdMatricula();
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [cdMatricula=" + cdMatricula + ", nome=" + nome + ", cpf=" + cpf + ", dataNascimento="
+				+ dataNascimento + "]";
+	}
 	
 }
