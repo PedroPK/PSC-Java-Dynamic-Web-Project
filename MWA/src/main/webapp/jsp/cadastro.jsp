@@ -26,7 +26,7 @@
 								CPF:
 							</td>
 							<td>
-								<input type="text" id="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
+								<input type="number" id="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
 										name="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
 										class="form-control" placeholder="CPF"/>
 							</td>
@@ -36,13 +36,65 @@
 								Data de Nascimento:
 							</td>
 							<td>
-								<input type="text" id="<%=CadastroServlet.NM_PARAMETRO_DATA_NASCIMENTO%>" 
+								<input type="date" id="<%=CadastroServlet.NM_PARAMETRO_DATA_NASCIMENTO%>" 
 										name="<%=CadastroServlet.NM_PARAMETRO_DATA_NASCIMENTO%>" 
 										class="form-control" placeholder="Data de Nascimento"/>
 							</td>
 						</tr>
 						<tr>
 							<td>
+								Gênero:
+							</td>
+							<td>
+								Masculino <input type="radio" id="masculino" 
+										name="genero" 
+								/>
+								Feminino <input type="radio" id="feminino" 
+										name="genero" 
+								/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Necessidasdes especiais?
+							</td>
+							<td>
+								<input type="checkbox" id="necessidadesEspeciais" name="genero" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								País
+							</td>
+							<td>
+								<select	name="genero"	id="genero">
+									<option> --Selecione uma Opção --</option>
+									<option>Brasil</option>
+									<option>Venezuela</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Senha:
+							</td>
+							<td>
+								<input type="password" id="senha" 
+										name="senha" 
+										class="form-control" placeholder="Senha"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Descrição:
+							</td>
+							<td>
+								<textarea id="texto" name="texto" class="form-control" placeholder="Descreva aqui..."></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								
 							</td>
 							<td>
 								<button type="submit" class="btn btn-primary">Adicionar</button>

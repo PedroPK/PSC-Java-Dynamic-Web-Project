@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		Hora certa: ${dataHora}
-		<c:if test="${deveImprimirLista}">
+		<c:if test="${deveImprimir}">
 			<ul>
 				<%List<String> lista = (List<String>) request.getAttribute(UtilServlet.NM_ATRIBUTO_LISTA_ITENS);%>
 				<c:forEach items="${lista}" var="item">
@@ -22,13 +22,21 @@
 				</c:forEach>
 			</ul>
 		</c:if>
+		<c:if test="${not deveImprimir}">
+			<br>
+			Nada deve ser impresso
+			<br>
+		</c:if>
+		<a href="<c:url value="/Cadastro"></c:url>">Link</a>
 		<br>
 		<c:choose>
-			<c:when test="${deveImprimirLista}">
-				A lista foi impressa acima.
+			<c:when test="${deveImprimir}">
+				A Lista foi impressa acima, e o Texto abaixo:
+				<br>
+				 - <c:out value="${texto}"></c:out>
 			</c:when>
 			<c:otherwise>
-				A lista não deveria ser impressa acima.
+				A Lista não deveria ser impressa acima, nem nenhum Texto abaixo.
 			</c:otherwise>
 		</c:choose>
 	</body>
