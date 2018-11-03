@@ -42,11 +42,11 @@ public class Pessoa implements EntityInterface {
 	public String getCpf() {
 		return cpf;
 	}
-
+	
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
+	
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -54,7 +54,7 @@ public class Pessoa implements EntityInterface {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,7 +65,7 @@ public class Pessoa implements EntityInterface {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -98,11 +98,13 @@ public class Pessoa implements EntityInterface {
 	public Object getPrimaryKey() {
 		return getCdMatricula();
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Pessoa [cdMatricula=" + cdMatricula + ", nome=" + nome + ", cpf=" + cpf + ", dataNascimento="
-				+ dataNascimento + "]";
+		return "Pessoa [cdMatricula="	+ cdMatricula + 
+				", nome="				+ nome + 
+				", cpf="				+ cpf + 
+				", dataNascimento="		+ dataNascimento + "]";
 	}
 	
 }
