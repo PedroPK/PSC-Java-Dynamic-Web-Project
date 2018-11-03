@@ -16,7 +16,8 @@ import static br.edu.unibratec.psc.web.UtilServlet.*;
 @WebServlet("/ServletJSTL")
 public class ServletJSTL extends HttpServlet {
 	
-	public static final String NM_ATRIBUTO_DEVE_IMPRIMIR_LISTA = "deveImprimirLista";
+	public static final String NM_ATRIBUTO_DEVE_IMPRIMIR = "deveImprimir";
+	public static final String NM_ATRIBUTO_TEXTO = "texto";
 	
 	private static final String URL_JSP_JSTL = "/jsp/jstl.jsp";
 	private static final long serialVersionUID = 1L;
@@ -34,13 +35,13 @@ public class ServletJSTL extends HttpServlet {
 	protected void doGet(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
 		setListaNoRequest(pRequest);
 		
-		boolean deveImprimirLista = false;
-		String paramDeveImprimir = pRequest.getParameter(NM_ATRIBUTO_DEVE_IMPRIMIR_LISTA);
+		boolean deveImprimir = false;
+		String paramDeveImprimir = pRequest.getParameter(NM_ATRIBUTO_DEVE_IMPRIMIR);
 		if (	isBooleanValido(paramDeveImprimir)		) {
-			deveImprimirLista = Boolean.parseBoolean(paramDeveImprimir);
+			deveImprimir = Boolean.parseBoolean(paramDeveImprimir);
 		}
-		
-		pRequest.setAttribute(NM_ATRIBUTO_DEVE_IMPRIMIR_LISTA, deveImprimirLista);
+		pRequest.setAttribute(NM_ATRIBUTO_TEXTO, "Texto a ser impresso.");
+		pRequest.setAttribute(NM_ATRIBUTO_DEVE_IMPRIMIR, deveImprimir);
 		pRequest.setAttribute(UtilServlet.NM_ATRIBUTO_DATA_HORA, UtilServlet.getDataHoraHojeAgora());
 		
 		
