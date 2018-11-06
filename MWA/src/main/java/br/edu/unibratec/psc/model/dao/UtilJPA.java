@@ -17,7 +17,9 @@ public class UtilJPA {
 	
 	public static void createEntityManagerFactoryH2() {
 		if ( emfH2 == null ) {
-			emfH2 = Persistence.createEntityManagerFactory(PersistUnits.h2.toString());
+			String persistenceUnitName = PersistUnits.h2.toString();
+			System.out.println(persistenceUnitName);
+			emfH2 = Persistence.createEntityManagerFactory(persistenceUnitName);
 		}
 	}
 	

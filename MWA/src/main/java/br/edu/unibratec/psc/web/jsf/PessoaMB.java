@@ -3,8 +3,9 @@ package br.edu.unibratec.psc.web.jsf;
 import javax.faces.bean.ManagedBean;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
+import br.edu.unibratec.psc.model.fachada.FachadaRepositorios;
 
-@ManagedBean
+@ManagedBean(name="pessoaMB")
 public class PessoaMB {
 	
 	Pessoa pessoa = new Pessoa();
@@ -31,6 +32,14 @@ public class PessoaMB {
 	public void inserir() {
 		if ( this.pessoa != null ) { 
 			System.out.println( this.pessoa.toString() );
+			
+			FachadaRepositorios repositorios = new FachadaRepositorios();
+			repositorios.inserir(pessoa);
+			
+			Pessoa consultado = repositorios.consultar(pessoa);
+			
+			System.out.println("Objeto Pessoa inserido é o mesmo que foi Consultado? " + (this.pessoa == consultado));
+			System.out.println("Objeto Pessoa inserido é igual que foi Consultado? " + (this.pessoa.equals(consultado)));
 		}
 	}
 

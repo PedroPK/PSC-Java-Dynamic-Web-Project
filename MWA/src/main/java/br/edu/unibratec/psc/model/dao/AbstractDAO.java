@@ -33,7 +33,9 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 		
 		transaction.commit();
 		
-		UtilJPA.closeEntityManager(pEntityManager);
+		if ( pCloseEntityManager ) {
+			UtilJPA.closeEntityManager(pEntityManager);
+		}
 	}
 	
 	/*
@@ -121,7 +123,9 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 	public T selectByEntity(Class<T> pClass, T pEntity, EntityManager pEntityManager, boolean pCloseEntityManager) {
 		T registry = pEntityManager.find(pClass, pEntity.getPrimaryKey());
 		
-		UtilJPA.closeEntityManager(pEntityManager);
+		if ( pCloseEntityManager ) {
+			UtilJPA.closeEntityManager(pEntityManager);
+		}
 		
 		return registry;
 	}
