@@ -1,5 +1,7 @@
 package br.edu.unibratec.psc.model.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -22,6 +24,22 @@ public class Pessoa implements EntityInterface {
 	private String	nome;
 	private String	cpf;
 	private Date	dataNascimento;
+	
+	public Pessoa() {}
+	
+	public Pessoa(String nome, String cpf, Date dataNascimento) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+	}
+	
+	public Pessoa(String nome, String cpf, String pDtNascimentoString) throws ParseException {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		setDataNascimento(pDtNascimentoString);
+	}
 	
 	public int getCdMatricula() {
 		return cdMatricula;
@@ -50,9 +68,14 @@ public class Pessoa implements EntityInterface {
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-
+	
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	
+	public void setDataNascimento(String pDaNascimentoString) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		this.dataNascimento = sdf.parse(pDaNascimentoString);
 	}
 	
 	@Override

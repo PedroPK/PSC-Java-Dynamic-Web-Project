@@ -1,16 +1,27 @@
 package br.edu.unibratec.psc.web.jsf;
 
-import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
+
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
 
-@ManagedBean
-public class PessoaMB {
+@Named("namedMB")
+@RequestScoped
+public class NamedMB implements Serializable {
+	
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = 1772316099848213676L;
 	
 	Pessoa pessoa = new Pessoa();
 	String nome = "";
 	
-	public PessoaMB() {}
+	public NamedMB() {
+		pessoa = new Pessoa();
+	}
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -29,9 +40,7 @@ public class PessoaMB {
 	}
 	
 	public void inserir() {
-		if ( this.pessoa != null ) { 
-			System.out.println( this.pessoa.toString() );
-		}
+		System.out.println( this.pessoa.getNome() );
 	}
-
+	
 }
