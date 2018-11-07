@@ -1,5 +1,9 @@
 package br.edu.unibratec.psc.web.jsf;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
@@ -9,7 +13,8 @@ import br.edu.unibratec.psc.model.fachada.FachadaRepositorios;
 public class PessoaMB {
 	
 	Pessoa pessoa = new Pessoa();
-	String nome = "";
+	
+	List<Pessoa> listaPessoas;
 	
 	public PessoaMB() {}
 
@@ -21,12 +26,12 @@ public class PessoaMB {
 		this.pessoa = pessoa;
 	}
 	
-	public String getNome() {
-		return nome;
+	public List<Pessoa> getListaPessoas() {
+		return listaPessoas;
 	}
 	
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setListaPessoas(List<Pessoa> listaPessoas) {
+		this.listaPessoas = listaPessoas;
 	}
 	
 	public void inserir() {
@@ -41,7 +46,15 @@ public class PessoaMB {
 			System.out.println("Objeto Pessoa inserido é o mesmo que foi Consultado? " + (this.pessoa == consultado));
 			System.out.println("Objeto Pessoa inserido é igual que foi Consultado? " + (this.pessoa.equals(consultado)));
 			
-			System.out.println("Todos os registros de Pessoas: " + repositorios.consultarTodasAsPessoas() );
+			this.listaPessoas = repositorios.consultarTodasAsPessoas();
+			Iterator<Pessoa> iterator = this.listaPessoas.iterator();
+			
+			System.out.println("Todos os registros de Pessoas.");
+			do {
+				int contador = 1;
+				System.out.println("Pessoa " + contador + ": " + iterator.next().toString());
+			}
+			while ( iterator.hasNext() );
 		}
 	}
 
