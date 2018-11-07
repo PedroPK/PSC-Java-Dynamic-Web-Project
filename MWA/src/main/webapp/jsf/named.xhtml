@@ -7,13 +7,17 @@
 	</h:head>
 	<h:body>
 		<h:form>
-			Nome <h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
-			<br></br>
-			CPF: <h:inputText value="#{namedMB.pessoa.cpf}"></h:inputText>
-			<br></br>
-			Data de Nascimento: <h:inputText value="#{namedMB.pessoa.dataNascimento}"></h:inputText>
-			<br></br>
-			<h:commandButton value="Inserir" action="#{namedMB.inserir}"></h:commandButton>
+			<h:panelGrid columns="2">
+				Nome <h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
+				<br></br>
+				CPF: <h:inputText value="#{namedMB.pessoa.cpf}"></h:inputText>
+				<br></br>
+				Data de Nascimento: <h:inputText value="#{namedMB.pessoa.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<br></br>
+				<h:commandButton value="Inserir" action="#{namedMB.inserir}"></h:commandButton>
+				</h:panelGrid>
 		</h:form>
 	</h:body>
 </html>

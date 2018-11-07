@@ -36,26 +36,12 @@ public class PessoaMB {
 	
 	public void inserir() {
 		if ( this.pessoa != null ) { 
-			System.out.println( this.pessoa.toString() );
-			
 			FachadaRepositorios repositorios = new FachadaRepositorios();
+			
 			repositorios.inserir(pessoa);
 			
-			Pessoa consultado = repositorios.consultar(pessoa);
-			
-			System.out.println("Objeto Pessoa inserido é o mesmo que foi Consultado? " + (this.pessoa == consultado));
-			System.out.println("Objeto Pessoa inserido é igual que foi Consultado? " + (this.pessoa.equals(consultado)));
-			
 			this.listaPessoas = repositorios.consultarTodasAsPessoas();
-			Iterator<Pessoa> iterator = this.listaPessoas.iterator();
-			
-			System.out.println("Todos os registros de Pessoas.");
-			do {
-				int contador = 1;
-				System.out.println("Pessoa " + contador + ": " + iterator.next().toString());
-			}
-			while ( iterator.hasNext() );
 		}
 	}
-
+	
 }
