@@ -1,5 +1,6 @@
 package br.edu.unibratec.psc.model.dao;
 
+import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,6 +24,7 @@ public class UtilJPA {
 		}
 	}
 	
+	@Produces
 	public static EntityManager getEntityManager() {
 		return getEntityManager(PersistUnits.h2);
 	}

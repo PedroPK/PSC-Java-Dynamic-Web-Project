@@ -46,10 +46,10 @@ public class NamedMB implements Serializable {
 	}
 	
 	public void inserir() {
-		System.out.println( this.pessoa.getNome() );
+		System.out.println( "Named: " + this.pessoa.getNome() );
 		
 		this.daoPessoa.insert(this.pessoa);
-		List<Pessoa> listaPessoas = this.daoPessoa.consultarTodasAsPessoas();
+		List<Pessoa> listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
 		System.out.println(listaPessoas.toString());
 	}
 	
