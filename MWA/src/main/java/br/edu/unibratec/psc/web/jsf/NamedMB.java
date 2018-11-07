@@ -1,15 +1,21 @@
 package br.edu.unibratec.psc.web.jsf;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.unibratec.psc.model.dao.PessoaDAO;
 import br.edu.unibratec.psc.model.entity.Pessoa;
 
 @Named("namedMB")
 @RequestScoped
 public class NamedMB implements Serializable {
+	
+	@Inject
+	private PessoaDAO daoPessoa;
 	
 	/**
 	 * Serial Version UID
@@ -41,6 +47,10 @@ public class NamedMB implements Serializable {
 	
 	public void inserir() {
 		System.out.println( this.pessoa.getNome() );
+		
+		this.daoPessoa.insert(this.pessoa);
+		List<Pessoa> listaPessoas = this.daoPessoa.consultarTodasAsPessoas();
+		System.out.println(listaPessoas.toString());
 	}
 	
 }
