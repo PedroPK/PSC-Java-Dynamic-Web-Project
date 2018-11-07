@@ -1,5 +1,6 @@
 package br.edu.unibratec.psc.model.dao;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,6 +26,7 @@ public class UtilJPA {
 	}
 	
 	@Produces
+	@RequestScoped
 	public static EntityManager getEntityManager() {
 		return getEntityManager(PersistUnits.h2);
 	}
