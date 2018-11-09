@@ -17,7 +17,29 @@
 				</h:inputText>
 				<br></br>
 				<h:commandButton value="Inserir" action="#{namedMB.inserir}"></h:commandButton>
-				</h:panelGrid>
+			</h:panelGrid>
 		</h:form>
+		
+		<h2>Lista de Pessoas cadastradas</h2>
+		<h:dataTable value="#{namedMB.listaPessoas}" var="pessoa" border="1">
+			<h:column>
+				<f:facet name="header">Matrícula</f:facet>
+				#{pessoa.cdMatricula}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				#{pessoa.nome}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">CPF</f:facet>
+				#{pessoa.cpf}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data de Nascimento</f:facet>
+				#{pessoa.dataNascimento}
+			</h:column>
+		</h:dataTable>
 	</h:body>
 </html>

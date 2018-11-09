@@ -10,47 +10,45 @@ import javax.inject.Named;
 import br.edu.unibratec.psc.model.dao.PessoaDAO;
 import br.edu.unibratec.psc.model.entity.Pessoa;
 
-@Named("namedMB")
+@Named
 @RequestScoped
 public class NamedMB implements Serializable {
-	
-	@Inject
-	private PessoaDAO daoPessoa;
 	
 	/**
 	 * Serial Version UID
 	 */
 	private static final long serialVersionUID = 1772316099848213676L;
 	
+	@Inject
+	private PessoaDAO daoPessoa;
+	
+	// Atributos de Tela
 	Pessoa pessoa = new Pessoa();
-	String nome = "";
+	List<Pessoa> listaPessoas;
 	
 	public NamedMB() {
 		pessoa = new Pessoa();
 	}
-
+	
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 	
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
+	public void setPessoa(Pessoa pPessoa) {
+		this.pessoa = pPessoa;
 	}
 	
-	public String getNome() {
-		return nome;
+	public List<Pessoa> getListaPessoas() {
+		return listaPessoas;
 	}
 	
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setListaPessoas(List<Pessoa> pListaPessoas) {
+		this.listaPessoas = pListaPessoas;
 	}
 	
 	public void inserir() {
-		System.out.println( "Named: " + this.pessoa.getNome() );
-		
 		this.daoPessoa.insert(this.pessoa);
-		List<Pessoa> listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
-		System.out.println(listaPessoas.toString());
+		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
 	}
 	
 }
