@@ -3,6 +3,8 @@ package br.edu.unibratec.psc.model.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.hibernate.PersistentObjectException;
+
 import br.edu.unibratec.psc.model.entity.EntityInterface;
 
 public abstract class AbstractDAO<T extends EntityInterface> implements InterfaceDAO<T>
@@ -26,15 +28,26 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 	}
 	
 	public void insert(T pObject, EntityManager pEntityManager, boolean pCloseEntityManager) {
-		EntityTransaction transaction = pEntityManager.getTransaction();
-		transaction.begin();
-		
-		pEntityManager.persist(pObject);
-		
-		transaction.commit();
-		
-		if ( pCloseEntityManager ) {
-			UtilJPA.closeEntityManager(pEntityManager);
+		try {
+			if ( pObject == null ) {
+				throw new ObjetoNuloPersistenciaException();
+			}
+			EntityTransaction transaction = pEntityManager.getTransaction();
+			transaction.begin();
+			
+			pEntityManager.persist(pObject);
+			
+			transaction.commit();
+			
+			if ( pCloseEntityManager ) {
+				UtilJPA.closeEntityManager(pEntityManager);
+			}
+		} catch (PersistentObjectException poe) {
+			System.out.println("Dados do objeto que se tentou persistir, sem sucesso:\n");
+			System.out.println(pObject.toString());
+		} catch (ObjetoNuloPersistenciaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

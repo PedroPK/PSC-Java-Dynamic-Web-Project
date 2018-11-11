@@ -53,7 +53,8 @@ public class NamedMB implements Serializable {
 	
 	public void inserir() {
 		// Create a registry at Database
-		this.daoPessoa.insert(this.pessoa);
+		//this.daoPessoa.insert(this.pessoa);
+		this.daoPessoa.update(pessoa);
 		
 		// Retrieve all registries from Database
 		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
