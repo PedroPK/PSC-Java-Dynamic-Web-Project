@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.annotation.ManagedProperty;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,7 +13,7 @@ import br.edu.unibratec.psc.model.dao.PessoaDAO;
 import br.edu.unibratec.psc.model.entity.Pessoa;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class NamedMB implements Serializable {
 	
 	/**
@@ -21,6 +23,9 @@ public class NamedMB implements Serializable {
 	
 	@Inject
 	private PessoaDAO daoPessoa;
+	
+	@ManagedProperty(value="#{param.pessoaCdMatricula}")
+	private int cdMatricula;
 	
 	// Atributos de Tela
 	Pessoa pessoa = new Pessoa();
@@ -47,7 +52,22 @@ public class NamedMB implements Serializable {
 	}
 	
 	public void inserir() {
+		// Create a registry at Database
 		this.daoPessoa.insert(this.pessoa);
+		
+		// Retrieve all registries from Database
+		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
+	}
+	
+	public void delete(Pessoa pPessoa) {
+		this.daoPessoa.deleteObject(pPessoa);
+		
+		// Retrieve all registries from Database
+		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
+	}
+	
+	public void delete() {
+		// Retrieve all registries from Database
 		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
 	}
 	

@@ -6,7 +6,7 @@
 		<title>Cadastro de uma nova Pessoa</title>
 	</h:head>
 	<h:body>
-		<h:form>
+		<h:form id="insertForm">
 			<h:panelGrid columns="2">
 				Nome <h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
 				<br></br>
@@ -16,30 +16,39 @@
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:inputText>
 				<br></br>
-				<h:commandButton value="Inserir" action="#{namedMB.inserir}"></h:commandButton>
+				<h:commandButton value="Inserir" action="#{namedMB.inserir}" />
 			</h:panelGrid>
 		</h:form>
 		
 		<h2>Lista de Pessoas cadastradas</h2>
-		<h:dataTable value="#{namedMB.listaPessoas}" var="pessoa" border="1">
-			<h:column>
-				<f:facet name="header">Matrícula</f:facet>
-				#{pessoa.cdMatricula}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				#{pessoa.nome}
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">CPF</f:facet>
-				#{pessoa.cpf}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Data de Nascimento</f:facet>
-				#{pessoa.dataNascimento}
-			</h:column>
-		</h:dataTable>
+		
+		<h:form id="deleteForm">
+			<h:dataTable value="#{namedMB.listaPessoas}" var="varPessoa" border="1">
+				<h:column>
+					<f:facet name="header">Matrícula</f:facet>
+					#{varPessoa.cdMatricula}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					#{varPessoa.nome}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">CPF</f:facet>
+					#{varPessoa.cpf}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Data de Nascimento</f:facet>
+					#{varPessoa.dataNascimento}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ações</f:facet>
+					<h:commandLink value="Excluir" action="#{namedMB.delete(varPessoa)}" >
+						<!-- <f:param name="pessoaCdMatricula" value="#{varPessoa.cdMatricula}"></f:param>  -->
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
 	</h:body>
 </html>

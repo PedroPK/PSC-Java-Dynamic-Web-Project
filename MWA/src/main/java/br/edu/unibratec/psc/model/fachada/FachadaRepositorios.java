@@ -23,8 +23,6 @@ public class FachadaRepositorios {
 		this.aDaoPessoa.insert(pPessoa);
 	}
 	
-	
-	
 	public Pessoa consultar(Pessoa pPessoa) {
 		Pessoa pessoa = this.aDaoPessoa.selectByEntity(Pessoa.class, pPessoa);
 		
@@ -33,6 +31,10 @@ public class FachadaRepositorios {
 	
 	public List<Pessoa> consultarTodasAsPessoas() {
 		return this.aDaoPessoa.consultarTodasAsPessoas();
+	}
+	
+	public void delete(Pessoa pPessoa) {
+		this.aDaoPessoa.deleteObject(pPessoa);
 	}
 	
 }
