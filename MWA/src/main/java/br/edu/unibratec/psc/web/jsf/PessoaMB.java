@@ -42,4 +42,21 @@ public class PessoaMB {
 		}
 	}
 	
+	public void delete(Pessoa pPessoa) {
+		FachadaRepositorios repositorios = new FachadaRepositorios();
+		
+		// Delete Object from Database
+		repositorios.delete(pPessoa);
+		
+		// Retrieve all registries from Database
+		this.listaPessoas = repositorios.consultarTodasAsPessoas();
+	}
+	
+	public void delete() {
+		FachadaRepositorios repositorios = new FachadaRepositorios();
+		
+		// Retrieve all registries from Database
+		this.listaPessoas = repositorios.consultarTodasAsPessoas();
+	}
+	
 }

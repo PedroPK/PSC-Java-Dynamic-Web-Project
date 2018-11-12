@@ -27,9 +27,15 @@ public class NamedMB implements Serializable {
 	@ManagedProperty(value="#{param.pessoaCdMatricula}")
 	private int cdMatricula;
 	
+	
+	
+	
 	// Atributos de Tela
 	Pessoa pessoa = new Pessoa();
 	List<Pessoa> listaPessoas;
+	
+	
+	
 	
 	public NamedMB() {
 		pessoa = new Pessoa();
@@ -63,11 +69,6 @@ public class NamedMB implements Serializable {
 	public void delete(Pessoa pPessoa) {
 		this.daoPessoa.deleteObject(pPessoa);
 		
-		// Retrieve all registries from Database
-		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
-	}
-	
-	public void delete() {
 		// Retrieve all registries from Database
 		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
 	}
