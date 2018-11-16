@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui"
+>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>PrimeFaces - Exemplo</title>
+	</head>
+	<h:body>
+		<h:form id="insertForm">
+			<h:panelGrid columns="2">
+				Nome
+				<h:inputText value="#{primeFacesMB.pessoa.nome}"></h:inputText>
+				<br></br>
+				CPF:
+				<h:inputText value="#{primeFacesMB.pessoa.cpf}"></h:inputText>
+				<br></br>
+				Data de Nascimento:
+				<h:inputText value="#{primeFacesMB.pessoa.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<br></br>
+				<h:commandButton value="Inserir" action="#{primeFacesMB.inserir}" />
+			</h:panelGrid>
+		</h:form>
+		
+		<h:form id="deleteForm" rendered="#{ not empty primeFacesMB.listaPessoas }">
+			<h2>Lista de Pessoas cadastradas</h2>
+			
+			<p:dataTable
+				selection="#{primeFacesMB.pessoas}"
+				selectionMode="single"
+				paginator="true"
+				var="varPessoa"
+				rows="10"
+				
+				paginatorTemplate="{CurrentPageReport}	{FirstPageLink}		{PreviousPageLink}
+									{NextPageLink}		{LastPageLink}		{RowsPerPageDrop}"
+				rowsPerPageTemplate="5, 10, 15"
+				style="width: 40%"
+				lazy="true"
+			>
+				<p:ajax	event="rowSelect"
+						update=":pessoaDialogoFormulario"
+						oncomplete="pessoaWidget.show()"/>
+				<p:column>
+					<f:facet name="header">Matrícula</f:facet>
+					#{varPessoa.cdMatricula}
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					#{varPessoa.nome}
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">CPF</f:facet>
+					#{varPessoa.cpf}
+				</p:column>
+				<p:column>
+					<f:facet name="header">Data de Nascimento</f:facet>
+					#{varPessoa.dataNascimento}
+				</p:column>
+				<p:column>
+					<f:facet name="header">Ações</f:facet>
+					<h:commandLink value="Excluir" action="#{primeFacesMB.delete(varPessoa)}" >
+						<!-- <f:param name="pessoaCdMatricula" value="#{varPessoa.cdMatricula}"></f:param>  -->
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</h:body>
+</html>
