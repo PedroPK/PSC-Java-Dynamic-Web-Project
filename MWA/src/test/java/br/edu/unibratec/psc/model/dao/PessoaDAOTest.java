@@ -22,7 +22,8 @@ public class PessoaDAOTest {
 		/*DadosBasicos dadosBasicos = new DadosBasicos();
 		dadosBasicos.setCpf("123.456.789-0");
 		dadosBasicos.setNome("John Doe");		//dadosBasicos.setDtNascimento();
-*/		
+		 */
+		
 		//pessoa.setCdMatricula(1);
 		//pessoa.setDadosBasicos(dadosBasicos);
 		

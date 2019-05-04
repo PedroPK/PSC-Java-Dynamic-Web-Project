@@ -1,4 +1,4 @@
-package br.edu.unibratec.psc.model.entity;
+package br.edu.unibratec.psc.model.dao;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.edu.unibratec.psc.model.dao.EnderecoDAO;
+import br.edu.unibratec.psc.model.entity.Endereco;
 
-public class EnderecoTest {
+public class EnderecoDAOTest {
 	
 	private EnderecoDAO aDao;
 	
