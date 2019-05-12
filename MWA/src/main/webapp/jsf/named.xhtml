@@ -13,22 +13,23 @@
 				Named
 			</h1>
 			<h:form id="insertForm">
-				<h:panelGrid columns="2">
-					<h:outputLabel>Nome:</h:outputLabel>
-					<h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
-					
-					<h:outputLabel>CPF:</h:outputLabel>
-					<h:inputText value="#{namedMB.pessoa.cpf}"></h:inputText>
-					
-					<h:outputLabel>Data de Nascimento:</h:outputLabel>
-					<h:inputText value="#{namedMB.pessoa.dataNascimento}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:inputText>
-					
-					<br></br>
-					
-					<h:commandButton value="Inserir" action="#{namedMB.inserir}" />
-				</h:panelGrid>
+				<div class="form-group">
+					<h:panelGrid columns="2">
+							<h:outputLabel>Nome:</h:outputLabel>
+							<h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
+							
+							<h:outputLabel>CPF:</h:outputLabel>
+							<h:inputText value="#{namedMB.pessoa.cpf}"></h:inputText>
+							
+							<h:outputLabel>Data de Nascimento:</h:outputLabel>
+							<h:inputText value="#{namedMB.pessoa.dataNascimento}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:inputText>
+							
+							<h:outputLabel>Botão:</h:outputLabel>
+							<h:commandButton value="Inserir" action="#{namedMB.inserir}" />
+					</h:panelGrid>
+				</div>
 			</h:form>
 			
 			<h:form id="deleteForm" rendered="#{ not empty namedMB.listaPessoas }">
