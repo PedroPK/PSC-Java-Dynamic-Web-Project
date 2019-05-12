@@ -16,7 +16,7 @@
 				<div class="form-group">
 					<h:panelGrid columns="2">
 							<h:outputLabel>Nome:</h:outputLabel>
-							<h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
+							<h:inputText value="#{namedMB.pessoa.nome}" required="true" styleClass="form-control"></h:inputText>
 							
 							<h:outputLabel>CPF:</h:outputLabel>
 							<h:inputText value="#{namedMB.pessoa.cpf}"></h:inputText>
@@ -26,8 +26,8 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:inputText>
 							
-							<h:outputLabel>Botão:</h:outputLabel>
-							<h:commandButton value="Inserir" action="#{namedMB.inserir}" />
+							<h:outputLabel><!-- Botão --></h:outputLabel>
+							<h:commandButton value="Inserir" action="#{namedMB.inserir}" styleClass="btn btn-primary" />
 					</h:panelGrid>
 				</div>
 			</h:form>
