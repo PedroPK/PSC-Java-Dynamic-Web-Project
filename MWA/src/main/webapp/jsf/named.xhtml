@@ -14,14 +14,19 @@
 			</h1>
 			<h:form id="insertForm">
 				<h:panelGrid columns="2">
-					Nome <h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
-					<br></br>
-					CPF: <h:inputText value="#{namedMB.pessoa.cpf}"></h:inputText>
-					<br></br>
-					Data de Nascimento: <h:inputText value="#{namedMB.pessoa.dataNascimento}">
+					<h:outputLabel>Nome:</h:outputLabel>
+					<h:inputText value="#{namedMB.pessoa.nome}"></h:inputText>
+					
+					<h:outputLabel>CPF:</h:outputLabel>
+					<h:inputText value="#{namedMB.pessoa.cpf}"></h:inputText>
+					
+					<h:outputLabel>Data de Nascimento:</h:outputLabel>
+					<h:inputText value="#{namedMB.pessoa.dataNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:inputText>
+					
 					<br></br>
+					
 					<h:commandButton value="Inserir" action="#{namedMB.inserir}" />
 				</h:panelGrid>
 			</h:form>
