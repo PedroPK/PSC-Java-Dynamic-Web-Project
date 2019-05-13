@@ -3,11 +3,19 @@ package br.edu.unibratec.psc.model.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
 
 public class PessoaDAOTest {
+	
+	private PessoaDAO dao;
+	
+	@Before
+	public void initDAO() {
+		this.dao = new PessoaDAO();
+	}
 	
 	@Test
 	public void testInsertPessoa() {
@@ -17,7 +25,7 @@ public class PessoaDAOTest {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome("John Doe");
 		
-		PessoaDAO dao = new PessoaDAO();
+		dao = new PessoaDAO();
 		
 		/*DadosBasicos dadosBasicos = new DadosBasicos();
 		dadosBasicos.setCpf("123.456.789-0");

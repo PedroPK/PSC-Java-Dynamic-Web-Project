@@ -8,22 +8,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Pessoa implements EntityInterface {
 	
 	/**
-	 * - Serial Version UID 
+	 * 
 	 */
-	private static final long serialVersionUID = 2318543695455472804L;
-	
+	private static final long serialVersionUID = -7739129857761202984L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int cdMatricula;
+	private int			cdMatricula;
 	
-	private String	nome;
-	private String	cpf;
-	private Date	dataNascimento;
+	private String		nome;
+	private String		cpf;
+	private Date		dataNascimento;
+	
+	private Endereco	endereco;
 	
 	public Pessoa() {}
 	
@@ -78,6 +83,14 @@ public class Pessoa implements EntityInterface {
 		this.dataNascimento = sdf.parse(pDaNascimentoString);
 	}
 	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -86,6 +99,7 @@ public class Pessoa implements EntityInterface {
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
 		return result;
 	}
 	
@@ -100,21 +114,31 @@ public class Pessoa implements EntityInterface {
 		Pessoa other = (Pessoa) obj;
 		if (cdMatricula != other.cdMatricula)
 			return false;
+		
 		if (cpf == null) {
 			if (other.cpf != null)
 				return false;
 		} else if (!cpf.equals(other.cpf))
 			return false;
+		
 		if (dataNascimento == null) {
 			if (other.dataNascimento != null)
 				return false;
 		} else if (!dataNascimento.equals(other.dataNascimento))
 			return false;
+		
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		
+		if (endereco == null) {
+			if (other.endereco != null)
+				return false;
+		} else if (!endereco.equals(other.endereco))
+			return false;
+		
 		return true;
 	}
 	
@@ -127,7 +151,9 @@ public class Pessoa implements EntityInterface {
 		return "Pessoa [cdMatricula="	+ cdMatricula + 
 				", nome="				+ nome + 
 				", cpf="				+ cpf + 
-				", dataNascimento="		+ dataNascimento + "]";
+				", dataNascimento="		+ dataNascimento +
+				", endereco="			+ endereco +
+			"]";
 	}
 	
 }
