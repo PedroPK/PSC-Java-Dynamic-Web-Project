@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 
 import br.edu.unibratec.psc.model.entity.Autor;
 
-public class AuthorDAO extends AbstractDAO<Autor> implements Serializable {
+public class AutorDAO extends AbstractDAO<Autor> implements Serializable {
 	
 	/**
 	 * Serial Version UID

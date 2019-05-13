@@ -4,19 +4,18 @@ import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import br.edu.unibratec.psc.model.entity.Autor;
 
-public class AuthorDAOTest {
+public class AutorDAOTest {
 	
-	private AuthorDAO dao;
+	private AutorDAO dao;
 	
 	@Before
 	public void initDAO() {
-		this.dao = new AuthorDAO();
+		this.dao = new AutorDAO();
 	}
 	
 	@Test
