@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.collection.internal.PersistentBag;
+
 @Entity
 public class Autor extends Pessoa {
 
@@ -26,6 +28,13 @@ public class Autor extends Pessoa {
 	private List<Livro>		books;
 	
 	public List<Livro> getBooks() {
+		if (	this.books != null && 
+				this.books instanceof PersistentBag
+		) {
+			if ( this.books.isEmpty() ) {
+				this.books = null;
+			}
+		}
 		return books;
 	}
 	
