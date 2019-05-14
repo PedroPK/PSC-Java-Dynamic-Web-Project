@@ -107,5 +107,11 @@ public class DadosBasicos implements EntityInterface {
 	public Object getPrimaryKey() {
 		return getCpf();
 	}
+
+	@Override
+	public void loadLazyAttributes() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

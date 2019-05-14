@@ -162,5 +162,11 @@ public class Endereco implements EntityInterface {
 		// TODO Auto-generated method stub
 		return this.aEndereco;
 	}
+
+	@Override
+	public void loadLazyAttributes() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -75,4 +75,9 @@ public class Autor extends Pessoa {
 				+ ", getClass()=" + getClass() + "]";
 	}
 	
+	@Override
+	public void loadLazyAttributes() {
+		getBooks();
+	}
+	
 }

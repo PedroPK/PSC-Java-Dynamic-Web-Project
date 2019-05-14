@@ -155,5 +155,11 @@ public class Pessoa implements EntityInterface {
 				", endereco="			+ endereco +
 			"]";
 	}
+
+	@Override
+	public void loadLazyAttributes() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
