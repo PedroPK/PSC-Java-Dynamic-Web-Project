@@ -83,6 +83,9 @@ public class NamedMB implements Serializable {
 	/**
 	 * Use this repository as Example:
 	 *  - https://github.com/alura-cursos/java-ee-webapp-2/
+	 *  
+	 *  https://github.com/alura-cursos/java-ee-webapp-2/blob/master/javaee-m2a3/src/main/java/br/com/casadocodigo/loja/models/CarrinhoCompras.java
+	 *  https://github.com/alura-cursos/java-ee-webapp-2/blob/master/javaee-m2a4/src/main/java/br/com/casadocodigo/loja/beans/CheckoutBean.java
 	 */
 	
 }
