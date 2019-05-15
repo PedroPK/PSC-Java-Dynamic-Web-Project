@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
@@ -28,9 +29,7 @@ public class PessoaJSON {
 	}
 	
 	public static JsonObjectBuilder createObjectBuilderPessoa(Pessoa pPessoa) {
-		JsonObjectBuilder response = null;
-		
-		response = Json.createObjectBuilder();
+		JsonObjectBuilder response = Json.createObjectBuilder();
 		
 		response = response
 			.add("cdMatricula",		pPessoa.getCdMatricula());
@@ -56,6 +55,14 @@ public class PessoaJSON {
 			.add("endereco", 		endereco);
 		
 		return response;
+	}
+	
+	public static JsonObject buildObjectPessoa(Pessoa pPessoa) {
+		return PessoaJSON.createObjectBuilderPessoa(pPessoa).build();
+	}
+	
+	public static String toString(Pessoa pPessoa) {
+		return PessoaJSON.buildObjectPessoa(pPessoa).toString();
 	}
 	
 }
