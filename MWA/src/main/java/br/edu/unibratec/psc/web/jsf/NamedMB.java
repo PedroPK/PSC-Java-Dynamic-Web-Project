@@ -3,8 +3,7 @@ package br.edu.unibratec.psc.web.jsf;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.annotation.ManagedProperty;
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,18 +23,22 @@ public class NamedMB implements Serializable {
 	@Inject
 	private PessoaDAO daoPessoa;
 	
-	@ManagedProperty(value="#{param.pessoaCdMatricula}")
-	private int cdMatricula;
+	/**
+	 *  Atributos de Tela
+	 */
+	private Pessoa pessoa = new Pessoa();
+	private List<Pessoa> listaPessoas;
+	
+	private HtmlDataTable htmlDataTable;
 	
 	
+	public HtmlDataTable getHtmlDataTable() {
+		return htmlDataTable;
+	}
 	
-	
-	// Atributos de Tela
-	Pessoa pessoa = new Pessoa();
-	List<Pessoa> listaPessoas;
-	
-	
-	
+	public void setHtmlDataTable(HtmlDataTable htmlDataTable) {
+		this.htmlDataTable = htmlDataTable;
+	}
 	
 	public NamedMB() {
 		pessoa = new Pessoa();
@@ -72,5 +75,14 @@ public class NamedMB implements Serializable {
 		// Retrieve all registries from Database
 		this.listaPessoas = this.daoPessoa.consultarTodasAsPessoasByInjectedEM();
 	}
+	
+	public String index() {
+		return "index";
+	}
+	
+	/**
+	 * Use this repository as Example:
+	 *  - https://github.com/alura-cursos/java-ee-webapp-2/
+	 */
 	
 }
