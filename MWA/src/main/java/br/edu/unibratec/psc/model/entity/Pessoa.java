@@ -3,6 +3,7 @@ package br.edu.unibratec.psc.model.entity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.PrePersist;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -29,6 +31,8 @@ public class Pessoa implements EntityInterface {
 	private Date		dataNascimento;
 	
 	private Endereco	endereco;
+	
+	private String uuid;
 	
 	public Pessoa() {}
 	
@@ -89,6 +93,22 @@ public class Pessoa implements EntityInterface {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String pUuid) {
+		this.uuid = pUuid;
+	}
+	
+	/**
+	 * This method  will generate an Randon and Unique UUID to let REST requisition to access this Object
+	 */
+	@PrePersist
+	public void createrUUID() {
+		this.uuid = UUID.randomUUID().toString();
 	}
 
 	@Override
