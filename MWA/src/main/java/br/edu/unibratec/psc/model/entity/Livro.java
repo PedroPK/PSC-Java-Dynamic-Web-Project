@@ -139,12 +139,20 @@ public class Livro implements EntityInterface {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
 		Livro other = (Livro) obj;
+		
 		if (authors == null) {
 			if (other.authors != null)
 				return false;
-		} else if (!authors.equals(other.authors))
+		} else if (
+			!authors.toString()
+				.equals(
+			other.authors.toString())
+		) {
 			return false;
+		}
+		
 		if (generos == null) {
 			if (other.generos != null)
 				return false;
@@ -180,7 +188,10 @@ public class Livro implements EntityInterface {
 	
 	@Override
 	public void loadLazyAttributes() {
-		getAuthors();
+		List<Autor> autores = getAuthors();
+		for (Autor autor: autores) {
+			autor.loadLazyAttributes();
+		}
 		getGeneros();
 	}
 	
