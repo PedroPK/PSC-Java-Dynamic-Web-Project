@@ -1,12 +1,11 @@
 package br.edu.unibratec.psc.model.entity.json;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.text.ParseException;
 
-import javax.json.JsonObject;
-
-import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
