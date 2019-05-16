@@ -20,6 +20,10 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 		return this.aEntityClass;
 	}
 	
+	public EntityManager getEntityManager() {
+		return UtilJPA.getEntityManager();
+	}
+	
 	/*
 	 * Method to Insert/Create a new Registry in the Database
 	 */
@@ -120,7 +124,22 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 		return selectByPrimaryKey(pClass, pPrimaryKey, UtilJPA.getEntityManager(), true);
 	}
 	public T selectByPrimaryKey(Class<T> pClass, Object pPrimaryKey, EntityManager pEntityManager, boolean pCloseEntityManager) {
+		T registry = 
+			selectByPrimaryKey(
+				pClass, 
+				pPrimaryKey, 
+				pEntityManager, 
+				pCloseEntityManager, 
+				false);
+		
+		return registry;
+	}
+	public T selectByPrimaryKey(Class<T> pClass, Object pPrimaryKey, EntityManager pEntityManager, boolean pCloseEntityManager, boolean pLoadLazyAttributes) {
 		T registry = pEntityManager.find(pClass, pPrimaryKey);
+		
+		if ( pLoadLazyAttributes ) {
+			registry.loadLazyAttributes();
+		}
 		
 		UtilJPA.closeEntityManager(pEntityManager);
 		
@@ -133,8 +152,32 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 	public T selectByEntity(Class<T> pClass, T pEntity) {
 		return selectByEntity(pClass, pEntity, UtilJPA.getEntityManager(), true);
 	}
-	public T selectByEntity(Class<T> pClass, T pEntity, EntityManager pEntityManager, boolean pCloseEntityManager) {
+	public T selectByEntity(
+		Class<T>		pClass, 
+		T				pEntity, 
+		EntityManager	pEntityManager, 
+		boolean			pCloseEntityManager
+	) {
+		T registry = 
+			selectByEntity(
+				pClass, 
+				pEntity,
+				pEntityManager,
+				pCloseEntityManager,
+				false
+			);
+		
+		return registry;
+	}
+	public T selectByEntity(
+		Class<T>		pClass, 
+		T				pEntity, 
+		EntityManager	pEntityManager, 
+		boolean			pCloseEntityManager,
+		boolean			pLoadLazyAttributes
+	) {
 		T registry = pEntityManager.find(pClass, pEntity.getPrimaryKey());
+		registry.loadLazyAttributes();
 		
 		if ( pCloseEntityManager ) {
 			UtilJPA.closeEntityManager(pEntityManager);
