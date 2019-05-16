@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.component.html.HtmlDataTable;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
 
 import br.edu.unibratec.psc.model.dao.PessoaDAO;
 import br.edu.unibratec.psc.model.entity.Pessoa;
@@ -22,6 +24,8 @@ public class NamedMB implements Serializable {
 	
 	@Inject
 	private PessoaDAO daoPessoa;
+	
+	private FacesContext	facesContext;
 	
 	/**
 	 *  Atributos de Tela
@@ -78,6 +82,40 @@ public class NamedMB implements Serializable {
 	
 	public String index() {
 		return "index";
+	}
+	
+	public void doSomething() {
+		String headerValue = getHeaderValueByPK();
+		
+		HttpServletResponse response = (HttpServletResponse)	facesContext.getExternalContext().getResponse();
+		response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+		response.setHeader("Location", headerValue);
+	}
+	
+	/**
+	 * Problem here:
+	 * 
+	 * Using ID in the URL, a more technical user will be able to spoof others Users IDs.
+	 * It allows them to access private data and leak information
+	 * 
+	 * @return
+	 */
+	private String getHeaderValueByPK() {
+		String requestContextPath = 							facesContext.getExternalContext().getRequestContextPath();
+		String headerValue = requestContextPath + "/" + "services/confirmacao?cpf=" + pessoa.getPrimaryKey();
+		return headerValue;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * @return
+	 */
+	private String getHeaderValueByUUID() {
+		String requestContextPath = 							facesContext.getExternalContext().getRequestContextPath();
+		String headerValue = requestContextPath + "/" + "services/confirmacao?uuid=" + pessoa.getPrimaryKey();
+		return headerValue;
 	}
 	
 	/**
