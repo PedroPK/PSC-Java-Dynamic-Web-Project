@@ -41,6 +41,7 @@ public class CalendarUtilTest {
 		assertEquals(	expectedResult,		result);
 	}
 	
+	@Ignore
 	@Test
 	public void testCalendarDateFormat_1983_11_31() {
 		// Arrange
@@ -53,6 +54,74 @@ public class CalendarUtilTest {
 		
 		// Assert
 		String expectedResult = "Saturday, November 31, 1983";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void testFormatLocalDate_1983_02_13() {
+		// Arrange
+		byte	day = 13;
+		byte	month = 02;
+		short	year = 1983;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "13/02/1983";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void testFormatLocalDate_1983_12_13() {
+		// Arrange
+		byte	day = 13;
+		byte	month = 12;
+		short	year = 1983;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "13/12/1983";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void testFormatLocalDate_1983_12_31() {
+		// Arrange
+		byte	day = 31;
+		byte	month = 12;
+		short	year = 1983;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "31/12/1983";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void testFormatLocalDate_1500_12_31() {
+		// Arrange
+		byte	day = 31;
+		byte	month = 12;
+		short	year = 1500;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "31/12/1500";
 		assertNotNull(	result);
 		assertFalse(	result.isEmpty());
 		assertEquals(	expectedResult,		result);

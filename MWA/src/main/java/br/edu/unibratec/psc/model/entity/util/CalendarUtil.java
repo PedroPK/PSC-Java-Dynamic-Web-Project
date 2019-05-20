@@ -1,6 +1,9 @@
 package br.edu.unibratec.psc.model.entity.util;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -33,6 +36,14 @@ public class CalendarUtil {
 		return date;
 	}
 	
+	/**
+	 * @deprecated	Should be used the "formatLocalDate" method
+	 * 
+	 * @param pDay
+	 * @param pMonth
+	 * @param pYear
+	 * @return
+	 */
 	public static String formatCalendarDate(
 		int		pDay, 
 		int		pMonth, 
@@ -42,10 +53,37 @@ public class CalendarUtil {
 		Date date = CalendarUtil.getDate(pDay, pMonth, pYear);
 		
 		// Gets a DateFormat instance to Full Format the Date
-		DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH);
+		DateFormat df = getDateFormat();
 		
 		// Format the Date and gets a Result String
 		String result = df.format(date);
+		
+		return result;
+	}
+
+	private static DateFormat getDateFormat() {
+		DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH);
+		return df;
+	}
+	
+	/*public void usingLocalDateTime() {
+		LocalDateTime ldt = LocalDateTime.
+	}*/
+	
+	public static String formatLocalDate(
+		int		pDay,
+		int		pMonth,
+		int		pYear
+	) {
+		// Gets a LocalDate instance
+		LocalDate ld = LocalDate.of(pYear, pMonth, pDay);
+		
+		// Gets a DateTimeFormater with the Brazilian Pattern
+		DateTimeFormatter dtf = 
+			DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
+		// Formats the LocalDate by the DateFormat
+		String result = ld.format(dtf);;
 		
 		return result;
 	}
