@@ -6,6 +6,14 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.json.bind.JsonbConfig;
+import javax.json.stream.JsonCollectors;
+import javax.json.stream.JsonGenerator;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
 import br.edu.unibratec.psc.util.UtilMethods;
@@ -17,7 +25,7 @@ public class PessoaJSON {
 		
 		if ( UtilMethods.isListValid(listPessoa) ) {
 			for (Pessoa pessoa: listPessoa) {
-				jsonArrayBuilder.add(
+				jsonArrayBuilder = jsonArrayBuilder.add(
 					createObjectBuilderPessoa(pessoa)
 				);
 			}
@@ -63,6 +71,42 @@ public class PessoaJSON {
 	
 	public static String toString(Pessoa pPessoa) {
 		return PessoaJSON.buildObjectPessoa(pPessoa).toString();
+	}
+	
+	public static String jsonB(Pessoa pPessoa) {
+		String response = null;
+		
+		if ( pPessoa != null ) {
+			Jsonb jsonB = JsonbBuilder.create();
+			response = jsonB.toJson(pPessoa);
+		}
+		
+		return response;
+	}
+	
+	public static String jsonB_prettyPrinting(Pessoa pPessoa) {
+		String response = null;
+		
+		if ( pPessoa != null ) {
+			JsonbConfig jsonbConfig = new JsonbConfig();
+			jsonbConfig.setProperty(JsonbConfig.FORMATTING, Boolean.TRUE);
+			
+			Jsonb jsonB = JsonbBuilder.create(jsonbConfig);
+			response = jsonB.toJson(pPessoa);
+		}
+		
+		return response;
+	}
+	
+	public static String gson(Pessoa pPessoa) {
+		String response = null;
+		
+		if ( pPessoa != null ) {
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			response = gson.toJson(pPessoa);
+		}
+		
+		return response;
 	}
 	
 }

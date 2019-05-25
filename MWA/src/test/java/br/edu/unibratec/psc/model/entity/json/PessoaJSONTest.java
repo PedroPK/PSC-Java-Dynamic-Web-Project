@@ -1,6 +1,7 @@
 package br.edu.unibratec.psc.model.entity.json;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -44,5 +45,61 @@ public class PessoaJSONTest {
 	public void testGetListPessoasJSON() {
 		fail("Not yet implemented");
 	}
-
+	
+	@Test
+	public void testJsonB_NullPessoa() {
+		Pessoa pessoa = null;
+		
+		PessoaJSON.jsonB(pessoa);
+	}
+	
+	@Test
+	public void testJsonB_PessoaNotNull_EnderecoNull() throws ParseException {
+		Pessoa pessoa = getPessoa_EnderecoNull();
+		
+		String json = PessoaJSON.jsonB(pessoa);
+		
+		assertNotNull(json);
+		assertFalse(json.isEmpty());
+		
+		System.out.println(
+			"\n" + 
+			"testJsonB_PessoaNotNull_EnderecoNull: \n" + json + "\n\n");
+	}
+	
+	@Test
+	public void testJsonBformatted_PessoaNotNull_EnderecoNull() throws ParseException {
+		Pessoa pessoa = getPessoa_EnderecoNull();
+		
+		String json = PessoaJSON.jsonB_prettyPrinting(pessoa);
+		
+		assertNotNull(json);
+		assertFalse(json.isEmpty());
+		
+		System.out.println(
+			"\n" + 
+			"testJsonBformatted_PessoaNotNull_EnderecoNull:" + json + "\n\n");
+	}
+	
+	@Test
+	public void testGson_NullPessoa() {
+		Pessoa pessoa = null;
+		
+		PessoaJSON.gson(pessoa);
+	}
+	
+	@Test
+	public void testGson_PessoaNotNull_EnderecoNull() throws ParseException {
+		Pessoa pessoa = getPessoa_EnderecoNull();
+		
+		String json = PessoaJSON.gson(pessoa);
+		
+		assertNotNull(json);
+		assertFalse(json.isEmpty());
+		
+		System.out.println(
+			"\n" + 
+			"testGson_PessoaNotNull_EnderecoNull: \n" + json + "\n\n");
+	}
+	
 }
