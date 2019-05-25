@@ -9,8 +9,6 @@ import javax.json.JsonObjectBuilder;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;
-import javax.json.stream.JsonCollectors;
-import javax.json.stream.JsonGenerator;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,6 +34,18 @@ public class PessoaJSON {
 		return json;
 	}
 	
+	/**
+	 * Create a JsonObjectBuilder, capable to convert a Pessoa do a JSon String
+	 * This method does it manually, using JSR 353/374 specification.
+	 * 
+	 * Disclaimer: There are better and simpler ways to do it,
+	 * available in Java 8 specification, 
+	 * with JSON-B (Java API for JSON Binding)
+	 * 
+	 * @param	Pessoa				Object that will be used to create a JSon Object Builder
+	 * 
+	 * @return	JsonObjectBuilder	Object capable to generate a JSon String from a Pessoa object
+	 */
 	public static JsonObjectBuilder createObjectBuilderPessoa(Pessoa pPessoa) {
 		JsonObjectBuilder response = Json.createObjectBuilder();
 		
@@ -61,6 +71,7 @@ public class PessoaJSON {
 		}
 		response = response
 			.add("endereco", 		endereco);
+		
 		
 		return response;
 	}
@@ -98,6 +109,14 @@ public class PessoaJSON {
 		return response;
 	}
 	
+	/**
+	 * Using the GSon library from Google to convert an Object 
+	 * to a JSon String
+	 * 
+	 * @param	Pessoa		Object to be converted to a JSon String
+	 * 
+	 * @return	String		JSon representation of a Pessoa Object
+	 */
 	public static String gson(Pessoa pPessoa) {
 		String response = null;
 		
