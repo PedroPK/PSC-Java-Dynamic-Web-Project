@@ -3,11 +3,9 @@ package br.edu.unibratec.psc.model.entity.json;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import java.text.ParseException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
@@ -40,25 +38,28 @@ public class PessoaJSONTest {
 		return pessoa;
 	}
 	
-	@Ignore
-	@Test
-	public void testGetListPessoasJSON() {
-		fail("Not yet implemented");
-	}
-	
 	@Test
 	public void testJsonB_NullPessoa() {
+		// Arrange
 		Pessoa pessoa = null;
 		
-		PessoaJSON.jsonB(pessoa);
+		// Act
+		String json = PessoaJSON.jsonB(pessoa);
+		
+		// Assert
+		assertNotNull(json);
+		assertFalse(json.isEmpty());
 	}
 	
 	@Test
 	public void testJsonB_PessoaNotNull_EnderecoNull() throws ParseException {
+		// Arrange
 		Pessoa pessoa = getPessoa_EnderecoNull();
 		
+		// Act
 		String json = PessoaJSON.jsonB(pessoa);
 		
+		// Assert
 		assertNotNull(json);
 		assertFalse(json.isEmpty());
 		
@@ -69,10 +70,13 @@ public class PessoaJSONTest {
 	
 	@Test
 	public void testJsonBformatted_PessoaNotNull_EnderecoNull() throws ParseException {
+		// Arrange
 		Pessoa pessoa = getPessoa_EnderecoNull();
 		
+		// Act
 		String json = PessoaJSON.jsonB_prettyPrinting(pessoa);
 		
+		// Assert
 		assertNotNull(json);
 		assertFalse(json.isEmpty());
 		
@@ -83,23 +87,44 @@ public class PessoaJSONTest {
 	
 	@Test
 	public void testGson_NullPessoa() {
+		// Arrange
 		Pessoa pessoa = null;
 		
-		PessoaJSON.gson(pessoa);
+		// Act
+		String json = PessoaJSON.gson(pessoa);
+		
+		// Assert
+		assertNotNull(json);
+		assertFalse(json.isEmpty());
 	}
 	
 	@Test
 	public void testGson_PessoaNotNull_EnderecoNull() throws ParseException {
+		// Arrange
 		Pessoa pessoa = getPessoa_EnderecoNull();
 		
+		// Act
 		String json = PessoaJSON.gson(pessoa);
 		
+		// Assert
 		assertNotNull(json);
 		assertFalse(json.isEmpty());
 		
 		System.out.println(
 			"\n" + 
 			"testGson_PessoaNotNull_EnderecoNull: \n" + json + "\n\n");
+	}
+	
+	@Test
+	public void testFromJson() {
+		// Arrange
+		String pessoaJson = "{\n" + 
+				"    \"cdMatricula\": 1,\n" + 
+				"    \"cpf\": \"039\",\n" + 
+				"    \"dataNascimento\": \"2003-02-01T03:00:00Z[UTC]\",\n" + 
+				"    \"nome\": \"My name is Slim Shady\",\n" + 
+				"    \"primaryKey\": 1\n" + 
+				"}";
 	}
 	
 }
