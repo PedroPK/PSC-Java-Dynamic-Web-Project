@@ -1,6 +1,7 @@
 package br.edu.unibratec.psc.web;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.edu.unibratec.psc.model.entity.Pessoa;
 
 /**
@@ -23,6 +27,8 @@ import br.edu.unibratec.psc.model.entity.Pessoa;
 public class CadastroServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Logger logger;
 	
 	private static final String JSP_CADASTRO = "/jsp/cadastro.jsp";
 	
@@ -34,14 +40,20 @@ public class CadastroServlet extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public CadastroServlet() {
-		super();
+		this.logger = LogManager.getLogger("psc.jpa.daos.DAOBasico");
+		this.logger.info("DAOBasico instancializado");
 	}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
-		UtilServlet.redirecionar(pRequest, pResponse, JSP_CADASTRO);
+		try {
+			UtilServlet.redirecionar(pRequest, pResponse, JSP_CADASTRO);
+		} catch ( UnknownHostException uhe ) {
+			this.logger.error("Uma exceção foi lançada ao tentar redirecionar para a JSP de Cadastro");
+			this.logger.error(uhe.toString());
+		}
 	}
 	
 	/**
@@ -56,7 +68,8 @@ public class CadastroServlet extends HttpServlet {
 		try {
 			dataNascimento = new SimpleDateFormat("dd/MM/yyyy").parse(dtNascimento);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			this.logger.error("ParseException lançado ao tentar Converte a Data de Nascimento");
+			this.logger.error(e.getMessage());
 		}
 		
 		Pessoa pessoa = new Pessoa();
@@ -64,7 +77,7 @@ public class CadastroServlet extends HttpServlet {
 		pessoa.setCpf(cpf);
 		pessoa.setDataNascimento(dataNascimento);
 		
-		System.out.println( pessoa.toString() );
+		this.logger.debug(pessoa.toString());
 	}
 	
 	private void imprimirParametros(HttpServletRequest pRequest, HttpServletResponse pResponse)
