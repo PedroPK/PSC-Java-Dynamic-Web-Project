@@ -13,7 +13,7 @@ public class SeleniumConfig {
 	
 	private static final String CHROME_DRIVER_FILE_NAME = "chromedriver";
 	private static final String WEBDRIVER_CHROME_DRIVER		= "webdriver.chrome.driver";
-	private static final String WEBDRIVER_FIREFOX_DRIVER	= "webdriver.gecko.driver";
+	//private static final String WEBDRIVER_FIREFOX_DRIVER	= "webdriver.gecko.driver";
 	
 	public SeleniumConfig() {
 		this.aWebDriver  = doInitialWebDriverConfiguration();
