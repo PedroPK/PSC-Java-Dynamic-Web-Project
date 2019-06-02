@@ -3,7 +3,6 @@ package br.edu.unibratec.tests.selenium.config;
 import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.fillInputValue;
 import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.getElementById;
 import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.getInputValue;
-
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -47,7 +46,7 @@ public class Selenium_MWA_CadastroServlet {
 		String previousText = fieldName.getText();
 		String text = "My name is SlimShade";
 		
-		fillInputValue(fieldName, text);
+		fillInputValue(aWebDriver, id, text);
 		
 		String newText = getInputValue(fieldName);
 		

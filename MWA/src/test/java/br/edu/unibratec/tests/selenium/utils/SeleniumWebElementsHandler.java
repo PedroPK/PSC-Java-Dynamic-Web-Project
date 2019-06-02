@@ -1,5 +1,7 @@
 package br.edu.unibratec.tests.selenium.utils;
 
+import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.getElementById;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,6 +69,19 @@ public class SeleniumWebElementsHandler {
 	 */
 	public static void fillInputValue(WebElement pWebElement, String pValue) {
 		pWebElement.sendKeys(pValue);
+	}
+	
+	public void fillInputValue(WebElement pFieldName, String pId, String pText) {
+		WebElement field = getElementById(this.aWebDriver, pId);
+		fillInputValue(pFieldName, pText);
+	}
+	
+	public void fillInputValue(String pId, String pText) {
+		fillInputValue(getElementById(this.aWebDriver, pId), pText);
+	}
+	
+	public static void fillInputValue(WebDriver pWebDriver, String pId, String pText) {
+		fillInputValue(getElementById(pWebDriver, pId), pText);
 	}
 	
 }
