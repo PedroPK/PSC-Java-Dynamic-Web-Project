@@ -2,10 +2,10 @@ package br.edu.unibratec.tests.selenium.config;
 
 import org.junit.Test;
 
-public class SeleniumConfigTest {
+public class Selenium_MWA_Cadastro {
 	
 	private SeleniumConfig aSeleniumConfig;
-	private String aURL = "http://www.baeldung.com/";
+	private String aURL = "http://localhost:8080/MWA/Cadastro";
 	
 	@Test
 	public void executeSeleniumConfigTest() {

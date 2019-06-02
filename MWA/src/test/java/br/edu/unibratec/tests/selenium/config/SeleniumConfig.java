@@ -16,21 +16,27 @@ public class SeleniumConfig {
 	private static final String WEBDRIVER_FIREFOX_DRIVER	= "webdriver.gecko.driver";
 	
 	public SeleniumConfig() {
+		this.aWebDriver  = doInitialWebDriverConfiguration();
+	}
+
+	private static WebDriver doInitialWebDriverConfiguration() {
 		System.setProperty(WEBDRIVER_CHROME_DRIVER, findDriverPath());
 		ChromeOptions chromeOptions = new ChromeOptions();
 		
-		this.aWebDriver = new ChromeDriver(chromeOptions);
+		WebDriver webDriver = new ChromeDriver(chromeOptions);
 		
 		int timeoutSeconds = 5;
 		
-		setTimeoutSeconds(timeoutSeconds);
+		setTimeoutSeconds(webDriver, timeoutSeconds);
+		
+		return webDriver;
 	}
 	
-	private void setTimeoutSeconds(int pTimeoutSeconds) {
-		this.aWebDriver.manage().timeouts().implicitlyWait(pTimeoutSeconds, TimeUnit.SECONDS);
+	private static void setTimeoutSeconds(WebDriver pWebDriver, int pTimeoutSeconds) {
+		pWebDriver.manage().timeouts().implicitlyWait(pTimeoutSeconds, TimeUnit.SECONDS);
 	}
 	
-	private String findDriverPath() {
+	private static String findDriverPath() {
 		String driverPath = "";
 		
 		String possiblePaths[] = {
@@ -58,9 +64,13 @@ public class SeleniumConfig {
 		
 		return driverPath;
 	}
-
-	public WebDriver getaWebDriver() {
-		return aWebDriver;
+	
+	public static WebDriver getNewWebDriver() {
+		return doInitialWebDriverConfiguration();
+	}
+	
+	public WebDriver getWebDriver() {
+		return this.aWebDriver;
 	}
 
 	public void setaWebDriver(WebDriver aWebDriver) {
