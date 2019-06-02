@@ -36,10 +36,19 @@ public class SeleniumConfig {
 		String possiblePaths[] = {
 			"",
 			"bin/",
-			"target/classes",
-			"src/test/resources"
+			"target/classes/",
+			"src/test/resources/"
 		};
 		
+		
+		// Looks for the Folder
+		/*for ( String pathFolder: possiblePaths ) {
+			if ( new File(pathFolder).exists() ) {
+				boolean folderExists = true;
+			}
+		}*/
+		
+		// Looks for the File itself
 		for ( String path: possiblePaths ) {
 			String pathFilename = path + CHROME_DRIVER_FILE_NAME;
 			if ( new File(pathFilename).exists() ) {
@@ -56,6 +65,12 @@ public class SeleniumConfig {
 
 	public void setaWebDriver(WebDriver aWebDriver) {
 		this.aWebDriver = aWebDriver;
+	}
+	
+	public void closeDriver() {
+		if ( this.aWebDriver != null ) {
+			this.aWebDriver.close();
+		}
 	}
 	
 }

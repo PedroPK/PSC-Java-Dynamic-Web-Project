@@ -1,8 +1,6 @@
-package br.edu.unibratec.tests.config;
+package br.edu.unibratec.tests.selenium.config;
 
 import org.junit.Test;
-
-import br.edu.unibratec.tests.selenium.config.SeleniumConfig;
 
 public class SeleniumConfigTest {
 	
@@ -13,6 +11,7 @@ public class SeleniumConfigTest {
 	public void executeSeleniumConfigTest() {
 		aSeleniumConfig = new SeleniumConfig();
 		aSeleniumConfig.getaWebDriver().get(aURL);
+		aSeleniumConfig.closeDriver();
 	}
 	
 }
