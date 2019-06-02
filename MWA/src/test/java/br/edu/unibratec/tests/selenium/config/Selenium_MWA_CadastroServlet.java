@@ -13,9 +13,11 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Selenium_MWA_Cadastro {
+public class Selenium_MWA_CadastroServlet {
 	
-	private static final String ID_INPUT_TEXT_NAME = "nome";
+	private static final String ID_INPUT_TEXT_NAME	= "nome";
+	private static final String ID_INPUT_TEXT_CPF	 = "cpf";
+	
 	private static			WebDriver		aWebDriver;
 	private static final	String			URL = "http://localhost:8080/MWA/Cadastro";
 	
@@ -36,7 +38,7 @@ public class Selenium_MWA_Cadastro {
 	}
 	
 	@Test
-	public void fillNameField() {
+	public void fillFieldName() {
 		// Arrange
 		String id = ID_INPUT_TEXT_NAME;
 		WebElement fieldName = getElementById(aWebDriver, id);
@@ -51,6 +53,58 @@ public class Selenium_MWA_Cadastro {
 		
 		//Assert
 		assertNotNull(fieldName);
+		assertNotNull(previousText);
+		assertNotEquals(previousText, newText);
+	}
+	
+	@Test
+	public void fillFieldCPF_withoutDotsAndHyphens() {
+		// Arrange
+		String id = ID_INPUT_TEXT_CPF;
+		WebElement fieldCpf = getElementById(aWebDriver, id);
+		
+		// Act
+		String previousText = fieldCpf.getText();
+		
+		/*
+		 *  If we use Dots and Hyphens, 
+		 *  and the Input type is Number, 
+		 *  it do not fill the Value attribute
+		 */
+		String text = "12345678901";
+		
+		fillInputValue(fieldCpf, text);
+		
+		String newText = getInputValue(fieldCpf);
+		
+		//Assert
+		assertNotNull(fieldCpf);
+		assertNotNull(previousText);
+		assertNotEquals(previousText, newText);
+	}
+	
+	@Test
+	public void fillFieldCPF_withtDotsAndHyphens() {
+		// Arrange
+		String id = ID_INPUT_TEXT_CPF;
+		WebElement fieldCpf = getElementById(aWebDriver, id);
+		
+		// Act
+		String previousText = fieldCpf.getText();
+		
+		/*
+		 *  If we use Dots and Hyphens, 
+		 *  and the Input type is Text instead of Number, 
+		 *  it will fill the Value attribute
+		 */
+		String text = "123.456.789-01";
+		
+		fillInputValue(fieldCpf, text);
+		
+		String newText = getInputValue(fieldCpf);
+		
+		//Assert
+		assertNotNull(fieldCpf);
 		assertNotNull(previousText);
 		assertNotEquals(previousText, newText);
 	}

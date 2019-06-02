@@ -26,7 +26,7 @@
 								CPF:
 							</td>
 							<td>
-								<input type="number" id="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
+								<input type="text" id="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
 										name="<%=CadastroServlet.NM_PARAMETRO_CPF%>" 
 										class="form-control" placeholder="CPF"/>
 							</td>
