@@ -5,8 +5,11 @@ import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.g
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import br.edu.unibratec.psc.util.UtilMethods;
+import static br.edu.unibratec.psc.util.UtilMethods.*;
 
 public class SeleniumWebElementsHandler {
 	
@@ -25,8 +28,24 @@ public class SeleniumWebElementsHandler {
 	public static WebElement getElementById(WebDriver pWebDriver, String pId) {
 		WebElement response = null;
 		
-		if ( pWebDriver != null && UtilMethods.isStringValid(pId) ) {
+		if ( pWebDriver != null && isStringValid(pId) ) {
 			response = pWebDriver.findElement(By.id(pId));
+		}
+		
+		return response;
+	}
+	
+	public static WebElement getElementById(WebDriver pWebDriver, String pId, long pTimeOutSeconds) {
+		WebElement response = null;
+		
+		if ( pWebDriver != null && isStringValid(pId) ) {
+			WebDriverWait wait = new WebDriverWait(pWebDriver, pTimeOutSeconds);
+			
+			By byId = By.id(pId);
+			
+			wait.until(ExpectedConditions.presenceOfElementLocated(byId));
+			
+			response = pWebDriver.findElement(byId);
 		}
 		
 		return response;
@@ -58,7 +77,26 @@ public class SeleniumWebElementsHandler {
 	 * 	@return		String			Text Content of Value attribute
 	 */
 	public static String getInputValue(WebElement pWebElement) {
-		return pWebElement.getAttribute(ATTRIBUTE_VALUE);
+		String responseValue = "";
+		if ( pWebElement != null ) {
+			responseValue = pWebElement.getAttribute(ATTRIBUTE_VALUE);
+		}
+		return responseValue;
+	}
+	
+	public static String getInputValue(WebDriver pWebDriver, String pId) {
+		String responseValue = "";
+		if ( 
+				pWebDriver != null		&&
+				isStringValid(pId)
+		) {
+			responseValue = 
+				getElementById(
+					pWebDriver,
+					pId).
+				getAttribute(ATTRIBUTE_VALUE);
+		}
+		return responseValue;
 	}
 	
 	/**

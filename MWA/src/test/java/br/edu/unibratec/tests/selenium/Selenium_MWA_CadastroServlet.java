@@ -1,4 +1,4 @@
-package br.edu.unibratec.tests.selenium.config;
+package br.edu.unibratec.tests.selenium;
 
 import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.fillInputValue;
 import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.getElementById;
@@ -11,6 +11,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import br.edu.unibratec.tests.selenium.config.SeleniumConfig;
 
 public class Selenium_MWA_CadastroServlet {
 	
@@ -30,7 +32,7 @@ public class Selenium_MWA_CadastroServlet {
 	public void findNameField() {
 		// Arrange
 		String id = ID_INPUT_TEXT_NAME;
-		WebElement fieldName = getElementById(aWebDriver, id);
+		WebElement fieldName = getElementById(aWebDriver, id, 5);
 		
 		//Assert
 		assertNotNull(fieldName);
@@ -40,7 +42,7 @@ public class Selenium_MWA_CadastroServlet {
 	public void fillFieldName() {
 		// Arrange
 		String id = ID_INPUT_TEXT_NAME;
-		WebElement fieldName = getElementById(aWebDriver, id);
+		WebElement fieldName = getElementById(aWebDriver, id, 5);
 		
 		// Act
 		String previousText = fieldName.getText();
@@ -48,7 +50,7 @@ public class Selenium_MWA_CadastroServlet {
 		
 		fillInputValue(aWebDriver, id, text);
 		
-		String newText = getInputValue(fieldName);
+		String newText = getInputValue(aWebDriver, id);
 		
 		//Assert
 		assertNotNull(fieldName);
@@ -60,7 +62,7 @@ public class Selenium_MWA_CadastroServlet {
 	public void fillFieldCPF_withoutDotsAndHyphens() {
 		// Arrange
 		String id = ID_INPUT_TEXT_CPF;
-		WebElement fieldCpf = getElementById(aWebDriver, id);
+		WebElement fieldCpf = getElementById(aWebDriver, id, 5);
 		
 		// Act
 		String previousText = fieldCpf.getText();
@@ -72,9 +74,9 @@ public class Selenium_MWA_CadastroServlet {
 		 */
 		String text = "12345678901";
 		
-		fillInputValue(fieldCpf, text);
+		fillInputValue(aWebDriver, id, text);
 		
-		String newText = getInputValue(fieldCpf);
+		String newText = getInputValue(aWebDriver, id);
 		
 		//Assert
 		assertNotNull(fieldCpf);
@@ -86,7 +88,7 @@ public class Selenium_MWA_CadastroServlet {
 	public void fillFieldCPF_withtDotsAndHyphens() {
 		// Arrange
 		String id = ID_INPUT_TEXT_CPF;
-		WebElement fieldCpf = getElementById(aWebDriver, id);
+		WebElement fieldCpf = getElementById(aWebDriver, id, 5);
 		
 		// Act
 		String previousText = fieldCpf.getText();
@@ -98,9 +100,9 @@ public class Selenium_MWA_CadastroServlet {
 		 */
 		String text = "123.456.789-01";
 		
-		fillInputValue(fieldCpf, text);
+		fillInputValue(aWebDriver, id, text);
 		
-		String newText = getInputValue(fieldCpf);
+		String newText = getInputValue(aWebDriver, id);
 		
 		//Assert
 		assertNotNull(fieldCpf);

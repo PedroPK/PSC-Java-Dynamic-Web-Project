@@ -18,7 +18,7 @@ public class SeleniumConfig {
 	public SeleniumConfig() {
 		this.aWebDriver  = doInitialWebDriverConfiguration();
 	}
-
+	
 	private static WebDriver doInitialWebDriverConfiguration() {
 		System.setProperty(WEBDRIVER_CHROME_DRIVER, findDriverPath());
 		ChromeOptions chromeOptions = new ChromeOptions();
