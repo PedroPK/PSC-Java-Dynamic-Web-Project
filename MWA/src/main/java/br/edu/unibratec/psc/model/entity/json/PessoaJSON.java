@@ -18,6 +18,21 @@ import br.edu.unibratec.psc.util.UtilMethods;
 
 public class PessoaJSON {
 	
+	/**
+	 * Get a JSon String containing the info about a 
+	 * List of Pessoa objects.
+	 * 
+	 * It uses a JsonArrayBuilder, doing it manually, 
+	 * using a JST 353/374 specification.
+	 * 
+	 * Disclaimer: There are better and simpler ways to do it,
+	 * available in Java 8 specification, 
+	 * with JSON-B (Java API for JSON Binding)
+	 * 
+	 * @param	List<Pessoa>		listPessoa		A list of Pessoa objects that will generate a Json String
+	 * 
+	 * @return	String		A String containing the representation about a list os Pessoa objects 
+	 */
 	public static String getListPessoasJSON(List<Pessoa> listPessoa) {
 		JsonArrayBuilder jsonArrayBuilder =  Json.createArrayBuilder();
 		
@@ -60,7 +75,7 @@ public class PessoaJSON {
 		
 		String dtNascimento = "null";
 		if ( pPessoa.getDataNascimento() != null ) {
-			dtNascimento = pPessoa.getDataNascimento().toString();
+			dtNascimento = pPessoa.getDataNascimentoToString();
 		}
 		response = response
 			.add("dataNascimento",	dtNascimento);
@@ -76,37 +91,116 @@ public class PessoaJSON {
 		return response;
 	}
 	
+	/**
+	 * Build a JsonObject from a Pessoa object
+	 * 
+	 * @param		pPessoa			Object that will be used to build a JsonObject
+	 * 
+	 * @return		JsonObject		a JsonObject created by a Pessoa object
+	 */
 	public static JsonObject buildObjectPessoa(Pessoa pPessoa) {
 		return PessoaJSON.createObjectBuilderPessoa(pPessoa).build();
 	}
 	
+	/**
+	 * Generate a Json String with info abou a Pessoa object
+	 * 
+	 * It uses the JSR 353/374 specification.
+	 * 
+	 * @param		Pessoa		Object with content to be converted do a Json String
+	 * 
+	 * @return		String		Contains the Pessoa object info
+	 */
 	public static String toString(Pessoa pPessoa) {
 		return PessoaJSON.buildObjectPessoa(pPessoa).toString();
 	}
 	
+	/**
+	 * Generate a Json String with info about a Pessoa object
+	 * 
+	 * It uses the JSR 367 specification, 
+	 * with the Eclipse Yasson official reference implementation
+	 * 
+	 * @param		Pessoa		Object with content to be converted do a Json String
+	 * 
+	 * @return		String		Contains the Pessoa object info
+	 */
 	public static String jsonB(Pessoa pPessoa) {
 		String response = null;
 		
 		if ( pPessoa != null ) {
-			Jsonb jsonB = JsonbBuilder.create();
+			Jsonb jsonB = createJsonB();
 			response = jsonB.toJson(pPessoa);
 		}
 		
 		return response;
 	}
 	
+	/**
+	 * This method encapsulates the JsonBuilder object and its create() method invocation.
+	 * 
+	 * @return	Jsonb		Object that can generate a Json Text from an Object and vice-versa
+	 */
+	private static Jsonb createJsonB() {
+		return JsonbBuilder.create();
+	}
+	
+	/**
+	 * Generate a Indented Json String with info about a Pessoa object
+	 * 
+	 * It will Break Lines and use Tabs to generate a human friendly Json text
+	 * 
+	 * It uses the JSR 367 specification, 
+	 * with the Eclipse Yasson official reference implementation
+	 * 
+	 * @param		Pessoa		Object with content to be converted do a Json String
+	 * 
+	 * @return		String		Contains the Pessoa object info
+	 */
 	public static String jsonB_prettyPrinting(Pessoa pPessoa) {
 		String response = null;
 		
 		if ( pPessoa != null ) {
-			JsonbConfig jsonbConfig = new JsonbConfig();
-			jsonbConfig.setProperty(JsonbConfig.FORMATTING, Boolean.TRUE);
-			
-			Jsonb jsonB = JsonbBuilder.create(jsonbConfig);
+			Jsonb jsonB = createJsonB_formatted();
 			response = jsonB.toJson(pPessoa);
 		}
 		
 		return response;
+	}
+	
+	/**
+	 * This method encapsulates the JsonConfig settings (to Format and Indent Json Text)
+	 * and the JsonBuilder object and its create() method invocation.
+	 * 
+	 * 
+	 * @return	Jsonb		Object that can generate a Json Text from an Object and vice-versa
+	 */
+	private static Jsonb createJsonB_formatted() {
+		JsonbConfig jsonbConfig = new JsonbConfig();
+		jsonbConfig.setProperty(JsonbConfig.FORMATTING, Boolean.TRUE);
+		
+		Jsonb jsonB = JsonbBuilder.create(jsonbConfig);
+		return jsonB;
+	}
+	
+	public static Pessoa fromJsonText(String pJsonText) {
+		Pessoa pessoa = null;
+		
+		if ( UtilMethods.isStringValid(pJsonText) ) {
+			pessoa = createJsonB().fromJson(pJsonText, Pessoa.class);
+		}
+		
+		return pessoa;
+	}
+	
+	public static Pessoa fromJsonFormattedText(String pJsonText) {
+		Pessoa pessoa = null;
+		
+		if ( UtilMethods.isStringValid(pJsonText) ) {
+			pessoa = createJsonB_formatted().fromJson(pJsonText, Pessoa.class);
+		}
+		
+		return pessoa;
 	}
 	
 	/**

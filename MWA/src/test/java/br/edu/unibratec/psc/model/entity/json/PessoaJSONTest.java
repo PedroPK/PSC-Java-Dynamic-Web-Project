@@ -24,7 +24,7 @@ public class PessoaJSONTest {
 		System.out.println("test01_CreateObjectBuilderPessoa_EnderecoNull: \n" + pessoaJSON + "\n\n");
 		
 		// Assert
-		String expected = "{\"cdMatricula\":1,\"nome\":\"My name is Slim Shady\",\"cpf\":\"039\",\"dataNascimento\":\"Sat Feb 01 00:00:00 BRT 2003\",\"endereco\":\"null\"}";
+		String expected = "{\"cdMatricula\":1,\"nome\":\"My name is Slim Shady\",\"cpf\":\"039\",\"dataNascimento\":\"01/02/2003\",\"endereco\":\"null\"}";
 		assertNotNull(pessoaJSON);
 		assertEquals(expected, pessoaJSON);
 		
