@@ -1,6 +1,7 @@
 package br.edu.unibratec.psc.model.entity.json;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
+import br.edu.unibratec.psc.util.Constants;
 import br.edu.unibratec.psc.util.UtilMethods;
 
 public class PessoaJSON {
@@ -178,6 +180,7 @@ public class PessoaJSON {
 	private static Jsonb createJsonB_formatted() {
 		JsonbConfig jsonbConfig = new JsonbConfig();
 		jsonbConfig.setProperty(JsonbConfig.FORMATTING, Boolean.TRUE);
+		jsonbConfig.withDateFormat(Constants.DATE_PATTERN, Locale.ENGLISH);
 		
 		Jsonb jsonB = JsonbBuilder.create(jsonbConfig);
 		return jsonB;
@@ -215,7 +218,11 @@ public class PessoaJSON {
 		String response = null;
 		
 		if ( pPessoa != null ) {
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			Gson gson = 
+				new GsonBuilder()
+					.setDateFormat(Constants.DATE_PATTERN)
+					.setPrettyPrinting()
+					.create();
 			response = gson.toJson(pPessoa);
 		}
 		

@@ -1,10 +1,17 @@
 package br.edu.unibratec.psc.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class UtilMethodsTest {
@@ -114,7 +121,9 @@ public class UtilMethodsTest {
 		// Act
 		char c = UtilMethods.shortToChar(s);
 		
-		printShortAndChar(s, c);
+		// Assert
+		assertEquals(0, c);
+		//printShortAndChar(s, c);
 	}
 	
 	@Test
@@ -125,7 +134,9 @@ public class UtilMethodsTest {
 		// Act
 		char c = UtilMethods.shortToChar(s);
 		
-		printShortAndChar(s, c);
+		// Assert
+		assertEquals(1, c);
+		//printShortAndChar(s, c);
 	}
 	
 	@Test
@@ -136,7 +147,9 @@ public class UtilMethodsTest {
 		// Act
 		char c = UtilMethods.shortToChar(s);
 		
-		printShortAndChar(s, c);
+		// Assert
+		assertEquals(32, c);
+		//printShortAndChar(s, c);
 	}
 	
 	@Test
@@ -147,11 +160,9 @@ public class UtilMethodsTest {
 		// Act
 		char c = UtilMethods.shortToChar(s);
 		
-		printShortAndChar(s, c);
-	}
-
-	private void printShortAndChar(short pShort, char pChar) {
-		System.out.println(pShort + ": " + pChar);
+		// Assert
+		assertEquals('@', c);
+		//printShortAndChar(s, c);
 	}
 	
 	@Test
@@ -162,7 +173,9 @@ public class UtilMethodsTest {
 		// Act
 		char c = UtilMethods.shortToChar(s);
 		
-		printShortAndChar(s, c);
+		// Assert
+		assertEquals(128, c);
+		//printShortAndChar(s, c);
 	}
 	
 	@Test
@@ -173,7 +186,9 @@ public class UtilMethodsTest {
 		// Act
 		short s = UtilMethods.charToShort(c);
 		
-		printCharAndShort(c, s);
+		// Assert
+		assertEquals(	97,		s);
+		//printCharAndShort(c, s);
 	}
 	
 	@Test
@@ -184,7 +199,9 @@ public class UtilMethodsTest {
 		// Act
 		short s = UtilMethods.charToShort(c);
 		
-		printCharAndShort(c, s);
+		// Assert
+		assertEquals(	98,		s);
+		//printCharAndShort(c, s);
 	}
 	
 	@Test
@@ -195,7 +212,9 @@ public class UtilMethodsTest {
 		// Act
 		short s = UtilMethods.charToShort(c);
 		
-		printCharAndShort(c, s);
+		// Assert
+		assertEquals(	122,		s);
+		//printCharAndShort(c, s);
 	}
 	
 	@Test
@@ -206,7 +225,9 @@ public class UtilMethodsTest {
 		// Act
 		short s = UtilMethods.charToShort(c);
 		
-		printCharAndShort(c, s);
+		// Assert
+		assertEquals(	65,		s);
+		//printCharAndShort(c, s);
 	}
 	
 	@Test
@@ -217,7 +238,9 @@ public class UtilMethodsTest {
 		// Act
 		short s = UtilMethods.charToShort(c);
 		
-		printCharAndShort(c, s);
+		// Assert
+		assertEquals(	90,		s);
+		//printCharAndShort(c, s);
 	}
 	
 	@Test
@@ -228,7 +251,9 @@ public class UtilMethodsTest {
 		// Act
 		short s = UtilMethods.charToShort(c);
 		
-		printCharAndShort(c, s);
+		// Assert
+		assertEquals(	255,		s);
+		//printCharAndShort(c, s);
 	}
 	
 	@Test
@@ -239,11 +264,9 @@ public class UtilMethodsTest {
 		// Act
 		char c = UtilMethods.shortToChar(s);
 		
-		printShortAndChar(s, c);
-	}
-
-	private void printCharAndShort(char pChar, short pShort) {
-		System.out.println(pChar + ": " + pShort);
+		// Assert
+		assertEquals(	'ÿ',		c);
+		//printShortAndChar(s, c);
 	}
 	
 	@Test
@@ -255,7 +278,98 @@ public class UtilMethodsTest {
 		// Act
 		String shortCharPairs = UtilMethods.getShortCharPairs(initialShort, finalShort, 10);
 		
-		System.out.println(shortCharPairs);
+		// Assert
+		assertNotNull(shortCharPairs);
+		assertFalse(shortCharPairs.isBlank());
+		//System.out.println(shortCharPairs);
+	}
+	
+	@Test
+	public void testGetDateFromLocalDate_Null() {
+		// Arrange
+		LocalDate localDateNull = null;
+		
+		// Act
+		Date dateNull = UtilMethods.getDateFromLocalDate(localDateNull);
+		
+		// Assert
+		assertNull(dateNull);
+	}
+	
+	@Test
+	public void testGetDateFromLocalDate_NotNull_1984Oct06() {
+		// Arrange
+		LocalDate localDateNull_1984Oct06 = LocalDate.of(1984, 10, 06);
+		
+		// Act
+		Date dateNotNull_1984Oct06 = UtilMethods.getDateFromLocalDate(localDateNull_1984Oct06);
+		
+		// Assert
+		assertNotNull(dateNotNull_1984Oct06);
+		//System.out.println(dateNotNull_1984Oct06);
+	}
+	
+	@Ignore
+	@Test
+	public void testGetDateFromLocalDate_1983Feb13() {
+		// Arrange
+		LocalDate localDateNull = LocalDate.of(1983, 02, 13);
+		
+		// Act
+		Date dateNull = UtilMethods.getDateFromLocalDate(localDateNull);
+		
+		// Assert
+		assertNotNull(dateNull);
+	}
+	
+	@Test
+	public void testFormatDate_Null() {
+		// Arrange
+		Date dateNull = null;
+		
+		// Act
+		String emptyString = UtilMethods.formatDate(dateNull);
+		
+		// Assert
+		assertNotNull(emptyString);
+	}
+	
+	@Test
+	public void testFormatDate_1983Feb13() {
+		// Arrange
+		Date dateNotNull = UtilMethods.getDate(1983, 02, 13);
+		
+		// Act
+		String notEmptyString = UtilMethods.formatDate(dateNotNull);
+		
+		// Assert
+		assertNotNull(notEmptyString);
+		assertFalse(notEmptyString.isBlank());
+		assertTrue(notEmptyString.length() == 10);
+		
+		System.out.println(notEmptyString);
+	}
+	
+	@Test
+	public void testGetDate_1983Feb13() {
+		// Arrange
+		int year	= 1983;
+		int month	= 02;
+		int day		= 13;
+		
+		// Act
+		Date date = UtilMethods.getDate(year, month, day);
+		
+		// Assert
+		assertNotNull(date);
+	}
+	
+	private void printShortAndChar(short pShort, char pChar) {
+		System.out.println(pShort + ": " + pChar);
+	}
+	
+	private void printCharAndShort(char pChar, short pShort) {
+		System.out.println(pChar + ": " + pShort);
 	}
 	
 }

@@ -21,7 +21,7 @@ public class PessoaTest {
 		int hashCodeObtido = pessoa.hashCode();
 		
 		// Assert
-		int resultadoEsperado = 880695151;
+		int resultadoEsperado = -2123539591;
 		assertEquals(resultadoEsperado, hashCodeObtido);
 	}
 

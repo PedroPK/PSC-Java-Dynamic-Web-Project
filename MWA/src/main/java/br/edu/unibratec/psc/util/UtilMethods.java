@@ -1,5 +1,11 @@
 package br.edu.unibratec.psc.util;
 
+import static br.edu.unibratec.psc.util.Constants.DATE_PATTERN;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 public class UtilMethods {
@@ -60,6 +66,48 @@ public class UtilMethods {
 		shortChar = pShort + ": " + shortToChar(pShort) + "\t";
 		
 		return shortChar;
+	}
+	
+	public static Date getDateFromLocalDate(LocalDate pLocalDate) {
+		Date response = null;
+		
+		if ( pLocalDate != null ) {
+			response = 
+				Date.from(
+					pLocalDate
+						.atStartOfDay()
+						.atZone(ZoneId.systemDefault())
+						.toInstant()
+			);
+		}
+		
+		return response;
+	}
+	
+	public static Date getDate(int pYear, int pMonth, int pDay) {
+		Date response = null;
+		
+		LocalDate localDate = LocalDate.of(pYear, pMonth, pDay);
+		response = getDateFromLocalDate(localDate);
+		
+		return response;
+	}
+	
+	public static String formatDate(Date pDate) {
+		String response = "";
+		
+		if ( pDate != null ) {
+			SimpleDateFormat sdf = getSimpleDateFormat();
+			
+			response = sdf.format(pDate);
+		}
+		
+		return response;
+	}
+
+	public static SimpleDateFormat getSimpleDateFormat() {
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
+		return sdf;
 	}
 	
 }
