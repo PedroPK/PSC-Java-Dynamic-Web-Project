@@ -1,5 +1,6 @@
 package br.edu.unibratec.psc.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,6 +27,12 @@ public class Autor extends Pessoa {
 		}
 	)
 	private List<Livro>		books;
+	
+	public Autor() {}
+	
+	public Autor(List<Livro> pLivros) {
+		this.books = pLivros;
+	}
 	
 	public List<Livro> getBooks() {
 		if (	this.books != null && 
