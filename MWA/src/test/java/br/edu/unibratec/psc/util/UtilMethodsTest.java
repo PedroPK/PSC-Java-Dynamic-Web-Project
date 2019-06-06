@@ -8,11 +8,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
+import br.edu.unibratec.psc.model.entity.util.CalendarUtil;
 
 public class UtilMethodsTest {
 	
@@ -362,6 +365,147 @@ public class UtilMethodsTest {
 		
 		// Assert
 		assertNotNull(date);
+	}
+	
+	@Ignore
+	@Test
+	public void testCalendarSetMethod() {
+		// Arrange
+		Calendar calendar = Calendar.getInstance();
+		
+		// Act
+		calendar.set(1983, 02, 13);
+		System.out.println( calendar.toString() );
+		
+		// Assert
+	}
+	
+	@Test
+	public void testFormatLocalDate_1983_02_13() {
+		// Arrange
+		byte	day = 13;
+		byte	month = 02;
+		short	year = 1983;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "13/02/1983";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void testFormatLocalDate_1983_12_13() {
+		// Arrange
+		byte	day = 13;
+		byte	month = 12;
+		short	year = 1983;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "13/12/1983";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void testFormatLocalDate_1983_12_31() {
+		// Arrange
+		byte	day = 31;
+		byte	month = 12;
+		short	year = 1983;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "31/12/1983";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void testFormatLocalDate_1500_12_31() {
+		// Arrange
+		byte	day = 31;
+		byte	month = 12;
+		short	year = 1500;
+		
+		// Act
+		String result = CalendarUtil.formatLocalDate(day, month, year);
+		
+		// Assert
+		String expectedResult = "31/12/1500";
+		assertNotNull(	result);
+		assertFalse(	result.isEmpty());
+		assertEquals(	expectedResult,		result);
+	}
+	
+	@Test
+	public void isDateValid_Null() {
+		// Arrange
+		String dateNull = null;
+		
+		// Act
+		boolean response = UtilMethods.isDateValid(dateNull);
+		
+		// Assert
+		assertFalse(response);
+	}
+	
+	@Test
+	public void isDateValid_EmptyString() {
+		// Arrange
+		String dateNull = "";
+		
+		// Act
+		boolean response = UtilMethods.isDateValid(dateNull);
+		
+		// Assert
+		assertFalse(response);
+	}
+	
+	@Test
+	public void isDateValid_BlanckString() {
+		// Arrange
+		String dateNull = " ";
+		
+		// Act
+		boolean response = UtilMethods.isDateValid(dateNull);
+		
+		// Assert
+		assertFalse(response);
+	}
+	
+	@Test
+	public void isDateValid_ValidDate_01Jan2003() {
+		// Arrange
+		String dateNull = "01/02/2003";
+		
+		// Act
+		boolean response = UtilMethods.isDateValid(dateNull);
+		
+		// Assert
+		assertTrue(response);
+	}
+	
+	@Test
+	public void isDateValid_ValidDate_32Jan2003() {
+		// Arrange
+		String dateNull = "32/02/2003";
+		
+		// Act
+		boolean response = UtilMethods.isDateValid(dateNull);
+		
+		// Assert
+		assertFalse(response);
 	}
 	
 	private void printShortAndChar(short pShort, char pChar) {

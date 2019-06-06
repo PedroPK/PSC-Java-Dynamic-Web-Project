@@ -2,6 +2,7 @@ package br.edu.unibratec.psc.util;
 
 import static br.edu.unibratec.psc.util.Constants.DATE_PATTERN;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -104,10 +105,30 @@ public class UtilMethods {
 		
 		return response;
 	}
-
+	
 	public static SimpleDateFormat getSimpleDateFormat() {
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
 		return sdf;
+	}
+	
+	public static boolean isDateValid(String pDate) {
+		boolean response = false;
+		
+		if ( isStringValid(pDate) && pDate.length() == 10 ) {
+			SimpleDateFormat sdf = getSimpleDateFormat();
+			
+			try {
+				sdf.parse(pDate);
+				
+				
+				//LocalDate localDate = LocalDate.of(year, month, dayOfMonth);
+				response = true;
+			} catch (ParseException e) {
+				// If a Exception were thrown, the pDate is not a Valid Date
+			}
+		}
+		
+		return response;
 	}
 	
 }
