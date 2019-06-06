@@ -17,7 +17,7 @@ import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.json.bind.annotation.JsonbProperty;
 
-import org.hamcrest.CoreMatchers;
+import static org.hamcrest.CoreMatchers.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -95,14 +95,14 @@ public class PessoaJSONTest {
 	public void test00_Gson_NullPessoa() {
 		// Arrange
 		Pessoa pessoa = null;
-
+		
 		// Act
 		String json = PessoaJSON.gson(pessoa);
-
+		
 		// Assert
 		assertNull(json);
 	}
-
+	
 	@Test
 	public void test04_Gson_PessoaNotNull_EnderecoNull() throws ParseException {
 		// Arrange
@@ -114,8 +114,9 @@ public class PessoaJSONTest {
 		// Assert
 		assertNotNull(json);
 		assertFalse(json.isEmpty());
+		assertThat(json, containsString("01/02/2003"));
 		
-		System.out.println("test04_Gson_PessoaNotNull_EnderecoNull: \n" + json + "\n\n");
+		//System.out.println("test04_Gson_PessoaNotNull_EnderecoNull: \n" + json + "\n\n");
 	}
 	
 	@Test
@@ -156,7 +157,8 @@ public class PessoaJSONTest {
 	@Test
 	public void test07_fromJsonText_copyPastedStringFromConsole() {
 		// Arrange
-		String pessoaJson = "{\"cdMatricula\":1,\"cpf\":\"039\",\"dataNascimento\":\"01/02/2003\",\"nome\":\"My name is Slim Shady\",\"primaryKey\":1}";
+		String date = "01/02/2003";
+		String pessoaJson = "{\"cdMatricula\":1,\"cpf\":\"039\",\"dataNascimento\":\"" + date + "\",\"nome\":\"My name is Slim Shady\",\"primaryKey\":1}";
 		System.out.println("test07_FromJson_copyPastedStringFromConsole:\n" + pessoaJson);
 		
 		// Act
@@ -200,7 +202,7 @@ public class PessoaJSONTest {
 		
 		// Assert
 		System.out.println("serialized = " + serialized);
-		assertThat(serialized, CoreMatchers.containsString("birthdate"));
+		assertThat(serialized, containsString("birthdate"));
 	}
 
 }
