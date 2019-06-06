@@ -120,8 +120,10 @@ public class UtilMethods {
 			try {
 				sdf.parse(pDate);
 				
+				int day = getDayFromDate(pDate);
 				
-				//LocalDate localDate = LocalDate.of(year, month, dayOfMonth);
+				//LocalDate localDate = LocalDate.of(year, month, day);
+				
 				response = true;
 			} catch (ParseException e) {
 				// If a Exception were thrown, the pDate is not a Valid Date
@@ -129,6 +131,15 @@ public class UtilMethods {
 		}
 		
 		return response;
+	}
+	
+	public static int getDayFromDate(String pDate) {
+		int day = -1;
+		if ( isStringValid(pDate) && pDate.length() == 10 ) {
+			day = Integer.parseInt( pDate.substring(0, 2) );
+		}
+		
+		return day;
 	}
 	
 }

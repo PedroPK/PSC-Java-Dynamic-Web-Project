@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -506,6 +508,18 @@ public class UtilMethodsTest {
 		
 		// Assert
 		assertFalse(response);
+	}
+	
+	@Test
+	public void getDayFromDate_Null() {
+		// Arrange
+		String dateNull = null;
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(dateNull);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(-1));
 	}
 	
 	private void printShortAndChar(short pShort, char pChar) {
