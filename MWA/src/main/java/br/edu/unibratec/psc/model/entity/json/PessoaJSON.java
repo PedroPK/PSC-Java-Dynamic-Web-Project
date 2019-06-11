@@ -76,7 +76,7 @@ public class PessoaJSON {
 			.add("cpf",				pPessoa.getCpf());
 		
 		String dtNascimento = "null";
-		if ( pPessoa.getDataNascimento() != null ) {
+		if ( pPessoa.getBirthdateString() != null ) {
 			dtNascimento = pPessoa.getDataNascimentoToString();
 		}
 		response = response
@@ -185,6 +185,7 @@ public class PessoaJSON {
 		Jsonb jsonB = JsonbBuilder.create(jsonbConfig);
 		return jsonB;
 	}
+	
 	
 	public static Pessoa fromJsonText(String pJsonText) {
 		Pessoa pessoa = null;
