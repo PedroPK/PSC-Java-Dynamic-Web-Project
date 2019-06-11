@@ -34,9 +34,7 @@ public class LivroDAOTest {
 	
 	@Test
 	public void testInsertT() {
-		/* 
-		 * Arrange
-		 */
+		// Arrange
 		Livro livro = new Livro();
 		livro.setIsbn("978-85-5519-115-2");
 		livro.setPages((short) 332);

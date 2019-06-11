@@ -48,6 +48,8 @@ public class CadastroServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
+		this.logger.info("doGet() invoked");
+		
 		try {
 			UtilServlet.redirecionar(pRequest, pResponse, JSP_CADASTRO);
 		} catch ( UnknownHostException uhe ) {
@@ -60,6 +62,8 @@ public class CadastroServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest pRequest, HttpServletResponse pResponse) throws ServletException, IOException {
+		this.logger.info("doPost() invoked");
+		
 		String nome				= pRequest.getParameter(NM_PARAMETRO_NOME);
 		String cpf				= pRequest.getParameter(NM_PARAMETRO_CPF);
 		String dtNascimento		= pRequest.getParameter(NM_PARAMETRO_DATA_NASCIMENTO);
@@ -75,13 +79,23 @@ public class CadastroServlet extends HttpServlet {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome(nome);
 		pessoa.setCpf(cpf);
-		pessoa.setDataNascimento(dataNascimento);
+		
+		try {
+			pessoa.setDataNascimento(dtNascimento);
+		} catch (ParseException e) {
+			this.logger.error("Error trying to set Birth Date in Pessoa object");
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.logger.debug(pessoa.toString());
 	}
 	
 	private void imprimirParametros(HttpServletRequest pRequest, HttpServletResponse pResponse)
 	throws ServletException, IOException {
+		this.logger.info("imprimirParametros() invoked");
+		
 		Map<String, String[]> parametros = pRequest.getParameterMap();
 		
 		Set<String> chaves = parametros.keySet();

@@ -32,7 +32,7 @@ public class NamedMB implements Serializable {
 	 */
 	private Pessoa pessoa = new Pessoa();
 	private List<Pessoa> listaPessoas;
-	
+		
 	private HtmlDataTable htmlDataTable;
 	
 	

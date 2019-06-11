@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import br.edu.unibratec.psc.model.entity.Pessoa;
 import br.edu.unibratec.psc.model.fachada.FachadaRepositorios;
 
-@ManagedBean()
+@ManagedBean
 public class PessoaMB {
 	
 	Pessoa pessoa = new Pessoa();

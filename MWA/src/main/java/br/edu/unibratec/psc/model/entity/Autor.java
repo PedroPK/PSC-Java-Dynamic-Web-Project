@@ -77,7 +77,7 @@ public class Autor extends Pessoa {
 	@Override
 	public String toString() {
 		return "Autor [books=" + books + ", getCdMatricula()=" + getCdMatricula() + ", getNome()=" + getNome()
-				+ ", getCpf()=" + getCpf() + ", getDataNascimento()=" + getDataNascimento() + ", getEndereco()="
+				+ ", getCpf()=" + getCpf() + ", getDataNascimento()=" + getBirthdateString() + ", getEndereco()="
 				+ getEndereco() + ", getPrimaryKey()=" + getPrimaryKey() + ", toString()=" + super.toString()
 				+ ", getClass()=" + getClass() + "]";
 	}

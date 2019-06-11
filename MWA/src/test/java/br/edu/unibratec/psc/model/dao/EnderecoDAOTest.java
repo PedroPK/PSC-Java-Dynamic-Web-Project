@@ -25,7 +25,7 @@ public class EnderecoDAOTest {
 		endereco.setNumero((short) 123);
 		endereco.setLogradouro("Av. Dantas Barreto");
 		
-		fail("Incomplete Test")
+		fail("Incomplete Test");
 	}
 	
 	@Test
