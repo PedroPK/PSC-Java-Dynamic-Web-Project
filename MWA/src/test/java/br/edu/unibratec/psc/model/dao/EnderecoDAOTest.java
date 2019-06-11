@@ -18,6 +18,17 @@ public class EnderecoDAOTest {
 	}
 	
 	@Test
+	public void testarAtribuirDadosEndereco() {
+		// Arranjar		&&		Agir
+		Endereco endereco = new Endereco();
+		endereco.setCEP("51.234-56");
+		endereco.setNumero((short) 123);
+		endereco.setLogradouro("Av. Dantas Barreto");
+		
+		fail("Incomplete Test")
+	}
+	
+	@Test
 	public void testarInserirEndereco() {
 		// Arranjar
 		Endereco endereco = new Endereco();
