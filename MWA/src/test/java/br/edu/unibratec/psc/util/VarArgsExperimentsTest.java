@@ -41,7 +41,7 @@ public class VarArgsExperimentsTest {
 		
 		// Assert
 		assertNotNull(varArgs.toString());
-		assertFalse(varArgs.toString().length() > 0);
+		assertTrue(varArgs.toString().length() > 0);
 	}
 
 }
