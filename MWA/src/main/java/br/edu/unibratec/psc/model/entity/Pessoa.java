@@ -1,10 +1,14 @@
 package br.edu.unibratec.psc.model.entity;
 
+import static br.edu.unibratec.psc.util.UtilMethods.*;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +17,15 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrePersist;
 
+import static br.edu.unibratec.psc.util.Constants.*;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@EqualsAndHashCode		@ToString(exclude="dataNascimento")
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Pessoa implements EntityInterface {
@@ -21,17 +34,27 @@ public class Pessoa implements EntityInterface {
 	 * 
 	 */
 	private static final long serialVersionUID = -7739129857761202984L;
-
+	
+	@Getter()		@Setter
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int			cdMatricula;
 	
+	@Getter()		@Setter
 	private String		nome;
+	
+	@Getter()		@Setter
 	private String		cpf;
+	
+	@JsonbDateFormat(value=DATE_PATTERN)
 	private Date		dataNascimento;
 	
+	private String		birthdateString;
+	
+	@Getter()		@Setter
 	private Endereco	endereco;
 	
+	@Getter()		@Setter
 	private String uuid;
 	
 	public Pessoa() {}
@@ -50,57 +73,26 @@ public class Pessoa implements EntityInterface {
 		setDataNascimento(pDtNascimentoString);
 	}
 	
-	public int getCdMatricula() {
-		return cdMatricula;
+	public String getDataNascimentoToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
+		String dtNascimentoString = sdf.format(dataNascimento);
+		return dtNascimentoString;
 	}
 	
-	public void setCdMatricula(int pCdMatricula) {
-		this.cdMatricula = pCdMatricula;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getCpf() {
-		return cpf;
-	}
-	
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
-	public Date getDataNascimento() {
-		return dataNascimento;
-	}
-	
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-	
-	public void setDataNascimento(String pDaNascimentoString) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		this.dataNascimento = sdf.parse(pDaNascimentoString);
-	}
-	
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-	
-	public String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(String pUuid) {
-		this.uuid = pUuid;
+	public void setDataNascimento(String pDtNascimentoString) throws ParseException {
+		if ( isStringValid(pDtNascimentoString) && pDtNascimentoString.length() == 10 ) {
+			SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
+			
+			int day		=	Integer.parseInt(pDtNascimentoString.substring(0, 2));
+			int month	=	Integer.parseInt(pDtNascimentoString.substring(3, 5));
+			int year	=	Integer.parseInt(pDtNascimentoString.substring(6, 10));
+			
+			this.dataNascimento =
+				getDateFromLocalDate(
+					LocalDate.of(year, month, day)
+				);
+			//this.dataNascimento = sdf.parse(pDtNascimentoString);
+		}
 	}
 	
 	/**
@@ -110,76 +102,26 @@ public class Pessoa implements EntityInterface {
 	public void createrUUID() {
 		this.uuid = UUID.randomUUID().toString();
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + cdMatricula;
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		return result;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pessoa other = (Pessoa) obj;
-		if (cdMatricula != other.cdMatricula)
-			return false;
-		
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		
-		if (dataNascimento == null) {
-			if (other.dataNascimento != null)
-				return false;
-		} else if (!dataNascimento.equals(other.dataNascimento))
-			return false;
-		
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		
-		if (endereco == null) {
-			if (other.endereco != null)
-				return false;
-		} else if (!endereco.equals(other.endereco))
-			return false;
-		
-		return true;
-	}
 	
 	public Object getPrimaryKey() {
 		return getCdMatricula();
 	}
 	
 	@Override
-	public String toString() {
-		return "Pessoa [cdMatricula="	+ cdMatricula + 
-				", nome="				+ nome + 
-				", cpf="				+ cpf + 
-				", dataNascimento="		+ dataNascimento +
-				", endereco="			+ endereco +
-			"]";
-	}
-
-	@Override
 	public void loadLazyAttributes() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public String getBirthdateString() {
+		return birthdateString;
+	}
+	
+	public void setBirthdateString(String pBirthdateString) {
+		if ( isStringValid(pBirthdateString) ) {
+			
+		}
+		this.birthdateString = pBirthdateString;
 	}
 	
 }
