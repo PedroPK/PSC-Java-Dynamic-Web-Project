@@ -22,7 +22,7 @@ import br.edu.unibratec.psc.model.entity.util.CalendarUtil;
 public class UtilMethodsTest {
 	
 	@Test
-	public void testIsListValid_Null() {
+	public void isListValid_Null() {
 		// Arrange
 		List<String> nullList = null;
 		
@@ -34,7 +34,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testIsListValid_Empty() {
+	public void isListValid_Empty() {
 		// Arrange
 		List<String> emptyList = new ArrayList<String>();
 		
@@ -46,7 +46,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testIsListValid_OneElement_EmptyString() {
+	public void isListValid_OneElement_EmptyString() {
 		// Arrange
 		List<String> oneElementList = new ArrayList<String>();
 		oneElementList.add("");
@@ -59,7 +59,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testIsStringValid_Null() {
+	public void isStringValid_Null() {
 		// Arrange
 		String nullString = null;
 		
@@ -71,7 +71,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testIsStringValid_Empty() {
+	public void isStringValid_Empty() {
 		// Arrange
 		String emptyString = "";
 		
@@ -83,7 +83,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testIsStringValid_OneCharacter_BlankSpace() {
+	public void isStringValid_OneCharacter_BlankSpace() {
 		// Arrange
 		String oneBlackSpaceString = " ";
 		
@@ -95,7 +95,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testIsStringValid_OneCharacter_Tab() {
+	public void isStringValid_OneCharacter_Tab() {
 		// Arrange
 		String oneTabString = "\t";
 		
@@ -107,7 +107,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testIsStringValid_OneCharacter_Underscore() {
+	public void isStringValid_OneCharacter_Underscore() {
 		// Arrange
 		String oneUnderscoreString = "_";
 		
@@ -119,7 +119,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testShortToChar_Zero() {
+	public void shortToChar_Zero() {
 		// Arrange
 		short s = 0;
 		
@@ -132,7 +132,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testShortToChar_One() {
+	public void shortToChar_One() {
 		// Arrange
 		short s = 1;
 		
@@ -145,7 +145,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testShortToChar_ThirtyTwo() {
+	public void shortToChar_ThirtyTwo() {
 		// Arrange
 		short s = 32;
 		
@@ -158,7 +158,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testShortToChar_SixtyFour() {
+	public void shortToChar_SixtyFour() {
 		// Arrange
 		short s = 64;
 		
@@ -171,7 +171,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testShortToChar_OneHundredTwentyEight() {
+	public void shortToChar_OneHundredTwentyEight() {
 		// Arrange
 		short s = 128;
 		
@@ -184,7 +184,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testCharToShort_a() {
+	public void charToShort_a() {
 		// Arrange
 		char c = 'a';
 		
@@ -197,7 +197,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testCharToShort_b() {
+	public void charToShort_b() {
 		// Arrange
 		char c = 'b';
 		
@@ -210,7 +210,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testCharToShort_z() {
+	public void charToShort_z() {
 		// Arrange
 		char c = 'z';
 		
@@ -223,7 +223,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testCharToShort_A() {
+	public void charToShort_A() {
 		// Arrange
 		char c = 'A';
 		
@@ -236,7 +236,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testCharToShort_Z() {
+	public void charToShort_Z() {
 		// Arrange
 		char c = 'Z';
 		
@@ -249,7 +249,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testCharToShort_zero_x_f_f() {
+	public void charToShort_zero_x_f_f() {
 		// Arrange
 		char c = 0xff;
 		
@@ -262,7 +262,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testShortToChar_zero_x_f_f() {
+	public void shortToChar_zero_x_f_f() {
 		// Arrange
 		short s = 0xff;
 		
@@ -275,7 +275,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testGetShortCharPairs() {
+	public void getShortCharPairs() {
 		// Arrange
 		short initialShort = 65;
 		short finalShort = 256;
@@ -290,7 +290,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testGetDateFromLocalDate_Null() {
+	public void getDateFromLocalDate_Null() {
 		// Arrange
 		LocalDate localDateNull = null;
 		
@@ -302,7 +302,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testGetDateFromLocalDate_NotNull_1984Oct06() {
+	public void getDateFromLocalDate_NotNull_1984Oct06() {
 		// Arrange
 		LocalDate localDateNull_1984Oct06 = LocalDate.of(1984, 10, 06);
 		
@@ -316,7 +316,7 @@ public class UtilMethodsTest {
 	
 	@Ignore
 	@Test
-	public void testGetDateFromLocalDate_1983Feb13() {
+	public void getDateFromLocalDate_1983Feb13() {
 		// Arrange
 		LocalDate localDateNull = LocalDate.of(1983, 02, 13);
 		
@@ -328,7 +328,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testFormatDate_Null() {
+	public void formatDate_Null() {
 		// Arrange
 		Date dateNull = null;
 		
@@ -340,7 +340,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testFormatDate_1983Feb13() {
+	public void formatDate_1983Feb13() {
 		// Arrange
 		Date dateNotNull = UtilMethods.getDate(1983, 02, 13);
 		
@@ -356,7 +356,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testGetDate_1983Feb13() {
+	public void getDate_1983Feb13() {
 		// Arrange
 		int year	= 1983;
 		int month	= 02;
@@ -371,7 +371,7 @@ public class UtilMethodsTest {
 	
 	@Ignore
 	@Test
-	public void testCalendarSetMethod() {
+	public void calendarSetMethod() {
 		// Arrange
 		Calendar calendar = Calendar.getInstance();
 		
@@ -383,7 +383,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testFormatLocalDate_1983_02_13() {
+	public void formatLocalDate_1983_02_13() {
 		// Arrange
 		byte	day = 13;
 		byte	month = 02;
@@ -400,7 +400,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testFormatLocalDate_1983_12_13() {
+	public void formatLocalDate_1983_12_13() {
 		// Arrange
 		byte	day = 13;
 		byte	month = 12;
@@ -417,7 +417,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testFormatLocalDate_1983_12_31() {
+	public void formatLocalDate_1983_12_31() {
 		// Arrange
 		byte	day = 31;
 		byte	month = 12;
@@ -434,7 +434,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void testFormatLocalDate_1500_12_31() {
+	public void formatLocalDate_1500_12_31() {
 		// Arrange
 		byte	day = 31;
 		byte	month = 12;
@@ -475,19 +475,31 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void isDateValid_BlanckString() {
+	public void isDateValid_BlankString() {
 		// Arrange
-		String dateNull = " ";
+		String dateBlank = " ";
 		
 		// Act
-		boolean response = UtilMethods.isDateValid(dateNull);
+		boolean response = UtilMethods.isDateValid(dateBlank);
 		
 		// Assert
 		assertFalse(response);
 	}
 	
 	@Test
-	public void isDateValid_ValidDate_01Jan2003() {
+	public void isDateValid__validDate_01Feb2003() {
+		// Arrange
+		String date = "01/02/2003";
+		
+		// Act
+		boolean response = UtilMethods.isDateValid(date);
+		
+		// Assert
+		assertTrue(response);
+	}
+	
+	@Test
+	public void isDateValid_validDate_01Jan2003() {
 		// Arrange
 		String dateNull = "01/02/2003";
 		
@@ -499,7 +511,7 @@ public class UtilMethodsTest {
 	}
 	
 	@Test
-	public void isDateValid_ValidDate_32Jan2003() {
+	public void isDateValid_validDate_32Jan2003() {
 		// Arrange
 		String dateNull = "32/02/2003";
 		
@@ -520,6 +532,354 @@ public class UtilMethodsTest {
 		
 		// Assert
 		assertThat(day, Matchers.equalTo(-1));
+	}
+	
+	@Test
+	public void getDayFromDate_Empty() {
+		// Arrange
+		String dateEmpty = "";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(dateEmpty);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(-1));
+	}
+	
+	@Test
+	public void getDayFromDate_Blank() {
+		// Arrange
+		String dateBlank = " ";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(dateBlank);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(-1));
+	}
+	
+	@Test
+	public void getDayFromDate_01Feb2003() {
+		// Arrange
+		String date = "01/02/2003";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(01));
+	}
+	
+	@Test
+	public void getDayFromDate_02Mar2004() {
+		// Arrange
+		String date = "02/03/2004";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(02));
+	}
+	
+	@Test
+	public void getDayFromDate_03Apr2005() {
+		// Arrange
+		String date = "03/04/2005";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(03));
+	}
+	
+	@Test
+	public void getDayFromDate_04May2006() {
+		// Arrange
+		String date = "04/05/2006";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(04));
+	}
+	
+	@Test
+	public void getDayFromDate_05Jun2007() {
+		// Arrange
+		String date = "05/06/2007";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(05));
+	}
+	
+	@Test
+	public void getDayFromDate_06Jul2008() {
+		// Arrange
+		String date = "06/07/2008";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(06));
+	}
+	
+	@Test
+	public void getDayFromDate_07Aug2009() {
+		// Arrange
+		String date = "07/08/2009";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(07));
+	}
+	
+	@Test
+	public void getDayFromDate_08Sep2010() {
+		// Arrange
+		String date = "08/09/2010";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(8));
+	}
+	
+	@Test
+	public void getDayFromDate_09Oct2011() {
+		// Arrange
+		String date = "09/10/2011";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(9));
+	}
+	
+	@Test
+	public void getDayFromDate_10Nov2012() {
+		// Arrange
+		String date = "10/11/2012";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(10));
+	}
+	
+	@Test
+	public void getDayFromDate_11Dec2013() {
+		// Arrange
+		String date = "11/12/2013";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(11));
+	}
+	
+	@Test
+	public void getDayFromDate_12Jan2014() {
+		// Arrange
+		String date = "12/01/2014";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(12));
+	}
+	
+	@Test
+	public void getDayFromDate_13Feb2015() {
+		// Arrange
+		String date = "13/02/2015";
+		
+		// Act
+		int day = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(day, Matchers.equalTo(13));
+	}
+	
+	@Test
+	public void getMonthFromDate_Null() {
+		// Arrange
+		String dateNull = null;
+		
+		// Act
+		int month = UtilMethods.getDayFromDate(dateNull);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(-1));
+	}
+	
+	@Test
+	public void getMonthFromDate_Empty() {
+		// Arrange
+		String dateEmpty = "";
+		
+		// Act
+		int month = UtilMethods.getDayFromDate(dateEmpty);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(-1));
+	}
+	
+	@Test
+	public void getMonthFromDate_Blank() {
+		// Arrange
+		String dateBlank = " ";
+		
+		// Act
+		int month = UtilMethods.getDayFromDate(dateBlank);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(-1));
+	}
+	
+	@Test
+	public void getMonthFromDate_01Feb2003() {
+		// Arrange
+		String date = "01/02/2003";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(02));
+	}
+	
+	@Test
+	public void getMonthFromDate_02Mar2004() {
+		// Arrange
+		String date = "02/03/2004";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(03));
+	}
+	
+	@Test
+	public void getMonthFromDate_03Apr2005() {
+		// Arrange
+		String date = "03/04/2005";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(04));
+	}
+	
+	@Test
+	public void getMonthFromDate_04May2006() {
+		// Arrange
+		String date = "04/05/2006";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(05));
+	}
+	
+	@Test
+	public void getMonthFromDate_05Jun2007() {
+		// Arrange
+		String date = "05/06/2007";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(06));
+	}
+	
+	@Test
+	public void getMonthFromDate_06Jul2008() {
+		// Arrange
+		String date = "06/07/2008";
+		
+		// Act
+		int month = UtilMethods.getDayFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(06));
+	}
+	
+	@Test
+	public void getMonthFromDate_07Aug2009() {
+		// Arrange
+		String date = "07/08/2009";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(8));
+	}
+	
+	@Test
+	public void getMonthFromDate_08Sep2010() {
+		// Arrange
+		String date = "08/09/2010";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(9));
+	}
+	
+	@Test
+	public void getMonthFromDate_09Oct2011() {
+		// Arrange
+		String date = "09/10/2011";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(10));
+	}
+	
+	@Test
+	public void getMonthFromDate_10Nov2012() {
+		// Arrange
+		String date = "10/11/2012";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(11));
+	}
+	
+	@Test
+	public void getMonthFromDate_11Dec2013() {
+		// Arrange
+		String date = "11/12/2013";
+		
+		// Act
+		int month = UtilMethods.getMonthFromDate(date);
+		
+		// Assert
+		assertThat(month, Matchers.equalTo(12));
 	}
 	
 	private void printShortAndChar(short pShort, char pChar) {

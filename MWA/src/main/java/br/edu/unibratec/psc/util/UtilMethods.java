@@ -121,6 +121,7 @@ public class UtilMethods {
 				sdf.parse(pDate);
 				
 				int day = getDayFromDate(pDate);
+				//int mounth = getMou
 				
 				//LocalDate localDate = LocalDate.of(year, month, day);
 				
@@ -140,6 +141,15 @@ public class UtilMethods {
 		}
 		
 		return day;
+	}
+	
+	public static int getMonthFromDate(String pDate) {
+		int month = -1;
+		if ( isStringValid(pDate) && pDate.length() == 10 ) {
+			month = Integer.parseInt( pDate.substring(3, 5) );
+		}
+		
+		return month;
 	}
 	
 }
