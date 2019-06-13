@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.hamcrest.Matchers;
+import static org.hamcrest.Matchers.*;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -531,7 +531,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(dateNull);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(-1));
+		assertThat(day, equalTo(-1));
 	}
 	
 	@Test
@@ -543,7 +543,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(dateEmpty);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(-1));
+		assertThat(day, equalTo(-1));
 	}
 	
 	@Test
@@ -555,7 +555,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(dateBlank);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(-1));
+		assertThat(day, equalTo(-1));
 	}
 	
 	@Test
@@ -567,7 +567,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(01));
+		assertThat(day, equalTo(01));
 	}
 	
 	@Test
@@ -579,7 +579,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(02));
+		assertThat(day, equalTo(02));
 	}
 	
 	@Test
@@ -591,7 +591,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(03));
+		assertThat(day, equalTo(03));
 	}
 	
 	@Test
@@ -603,7 +603,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(04));
+		assertThat(day, equalTo(04));
 	}
 	
 	@Test
@@ -615,7 +615,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(05));
+		assertThat(day, equalTo(05));
 	}
 	
 	@Test
@@ -627,7 +627,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(06));
+		assertThat(day, equalTo(06));
 	}
 	
 	@Test
@@ -639,7 +639,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(07));
+		assertThat(day, equalTo(07));
 	}
 	
 	@Test
@@ -651,7 +651,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(8));
+		assertThat(day, equalTo(8));
 	}
 	
 	@Test
@@ -663,7 +663,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(9));
+		assertThat(day, equalTo(9));
 	}
 	
 	@Test
@@ -675,7 +675,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(10));
+		assertThat(day, equalTo(10));
 	}
 	
 	@Test
@@ -687,7 +687,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(11));
+		assertThat(day, equalTo(11));
 	}
 	
 	@Test
@@ -699,7 +699,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(12));
+		assertThat(day, equalTo(12));
 	}
 	
 	@Test
@@ -711,7 +711,7 @@ public class UtilMethodsTest {
 		int day = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(day, Matchers.equalTo(13));
+		assertThat(day, equalTo(13));
 	}
 	
 	@Test
@@ -723,7 +723,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getDayFromDate(dateNull);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(-1));
+		assertThat(month, equalTo(-1));
 	}
 	
 	@Test
@@ -735,7 +735,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getDayFromDate(dateEmpty);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(-1));
+		assertThat(month, equalTo(-1));
 	}
 	
 	@Test
@@ -747,7 +747,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getDayFromDate(dateBlank);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(-1));
+		assertThat(month, equalTo(-1));
 	}
 	
 	@Test
@@ -759,7 +759,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(02));
+		assertThat(month, equalTo(02));
 	}
 	
 	@Test
@@ -771,7 +771,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(03));
+		assertThat(month, equalTo(03));
 	}
 	
 	@Test
@@ -783,7 +783,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(04));
+		assertThat(month, equalTo(04));
 	}
 	
 	@Test
@@ -795,7 +795,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(05));
+		assertThat(month, equalTo(05));
 	}
 	
 	@Test
@@ -807,7 +807,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(06));
+		assertThat(month, equalTo(06));
 	}
 	
 	@Test
@@ -819,7 +819,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getDayFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(06));
+		assertThat(month, equalTo(06));
 	}
 	
 	@Test
@@ -831,7 +831,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(8));
+		assertThat(month, equalTo(8));
 	}
 	
 	@Test
@@ -843,7 +843,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(9));
+		assertThat(month, equalTo(9));
 	}
 	
 	@Test
@@ -855,7 +855,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(10));
+		assertThat(month, equalTo(10));
 	}
 	
 	@Test
@@ -867,7 +867,7 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(11));
+		assertThat(month, equalTo(11));
 	}
 	
 	@Test
@@ -879,7 +879,55 @@ public class UtilMethodsTest {
 		int month = UtilMethods.getMonthFromDate(date);
 		
 		// Assert
-		assertThat(month, Matchers.equalTo(12));
+		assertThat(month, equalTo(12));
+	}
+	
+	@Test
+	public void getYearFromDate_Null() {
+		// Arrange
+		String dateNull = null;
+		
+		// Act
+		int year = UtilMethods.getYearFromDate(dateNull);
+		
+		// Assert
+		assertThat(year, equalTo(-1));
+	}
+	
+	@Test
+	public void getYearFromDate_Empty() {
+		// Arrange
+		String dateEmpty = "";
+		
+		// Act
+		int year = UtilMethods.getYearFromDate(dateEmpty);
+		
+		// Assert
+		assertThat(year, equalTo(-1));
+	}
+	
+	@Test
+	public void getYearFromDate_Blank() {
+		// Arrange
+		String dateBlank = " ";
+		
+		// Act
+		int year = UtilMethods.getYearFromDate(dateBlank);
+		
+		// Assert
+		assertThat(year, equalTo(-1));
+	}
+	
+	@Test
+	public void getYearFromDate_01Feb2003() {
+		// Arrange
+		String date = "01/02/2003";
+		
+		// Act
+		int year = UtilMethods.getYearFromDate(date);
+		
+		// Assert
+		assertThat(year, equalTo(2003));
 	}
 	
 	private void printShortAndChar(short pShort, char pChar) {
