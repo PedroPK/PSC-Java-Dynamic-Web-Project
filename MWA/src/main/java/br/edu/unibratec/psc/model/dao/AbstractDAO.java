@@ -1,7 +1,10 @@
 package br.edu.unibratec.psc.model.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.PersistentObjectException;
 
@@ -176,7 +179,10 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 		boolean			pCloseEntityManager,
 		boolean			pLoadLazyAttributes
 	) {
-		T registry = pEntityManager.find(pClass, pEntity.getPrimaryKey());
+		T registry = pEntityManager.find(
+			pClass, 
+			pEntity.getPrimaryKey());
+		
 		registry.loadLazyAttributes();
 		
 		if ( pCloseEntityManager ) {
@@ -184,6 +190,21 @@ public abstract class AbstractDAO<T extends EntityInterface> implements Interfac
 		}
 		
 		return registry;
+	}
+	
+	public List<T> findAll() {
+		EntityManager em = getEntityManager();
+		
+		String query = " Select t From " + getEntityClass().getSimpleName() + " t ";
+		
+		TypedQuery<T> typedQuery = 
+			em.createQuery(
+				query, 
+				getEntityClass());
+		
+		List<T> resultset = typedQuery.getResultList();
+		
+		return resultset;
 	}
 	
 }
