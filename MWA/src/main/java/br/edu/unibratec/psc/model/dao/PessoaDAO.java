@@ -19,6 +19,10 @@ public class PessoaDAO extends AbstractDAO<Pessoa> implements Serializable {
 	@Inject
 	private EntityManager em;
 	
+	public PessoaDAO() {
+		defineEntityClass(Pessoa.class);
+	}
+	
 	public List<Pessoa> consultarTodasAsPessoas() {
 		String querySelect = "Select p From Pessoa p";
 		

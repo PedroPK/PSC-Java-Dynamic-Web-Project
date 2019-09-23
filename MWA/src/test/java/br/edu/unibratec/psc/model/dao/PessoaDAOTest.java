@@ -1,7 +1,10 @@
 package br.edu.unibratec.psc.model.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +50,27 @@ public class PessoaDAOTest {
 		assertEquals(pessoa, selected);
 		assertNotSame(pessoa, selected);
 		assertEquals(pessoa.getNome(), selected.getNome());
+	}
+	
+	@Test
+	public void testFindAll() {
+		 // Arrange
+		Pessoa john = new Pessoa();
+		john.setNome("John Doe");
+		
+		Pessoa james = new Pessoa();
+		james.setNome("James Lannister");
+		
+		// Act
+		dao = new PessoaDAO();
+		dao.insert(john);
+		dao.insert(james);
+		
+		List<Pessoa> resultSet = dao.findAll();
+		
+		// Assert
+		assertNotNull(resultSet);
+		
 	}
 	
 }
