@@ -27,7 +27,7 @@ public class EnderecoDAOTest {
 		// Arranjar		&&		Agir
 		Endereco endereco = new Endereco();
 		endereco.setCEP("51.234-56");
-		endereco.setNumero(123);
+		endereco.setNumero((short) 123);
 		endereco.setLogradouro("Av. Dantas Barreto");
 		
 		fail("Incomplete Test");
@@ -38,7 +38,7 @@ public class EnderecoDAOTest {
 		// Arranjar
 		Endereco endereco = new Endereco();
 		endereco.setCEP("51.234-56");
-		endereco.setNumero(123);
+		endereco.setNumero((short) 123);
 		endereco.setLogradouro("Av. Dantas Barreto");
 		
 		// Agir
@@ -58,7 +58,7 @@ public class EnderecoDAOTest {
 		// Arrange
 		Endereco enderecoInserido = new Endereco();
 		enderecoInserido.setCEP("12.345-67");
-		enderecoInserido.setNumero(90);
+		enderecoInserido.setNumero((short) 90);
 		enderecoInserido.setLogradouro("Conde da Boa Vista");
 		
 		// Act
@@ -69,8 +69,8 @@ public class EnderecoDAOTest {
 				Endereco.class, 
 				enderecoInserido);
 		
-		// Alterando um dos Atributos que compõe a PK do Endereço
-		alterado.setNumero(91);
+		// Alterando um dos Atributos que compï¿½e a PK do Endereï¿½o
+		alterado.setNumero((short) 91);
 		
 		aDao.update(alterado);
 		
