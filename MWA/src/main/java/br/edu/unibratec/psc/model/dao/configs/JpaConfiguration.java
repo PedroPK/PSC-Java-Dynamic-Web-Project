@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "br.edu.unibratec.psc.model.dao")
 public class JpaConfiguration {
 	
 	@Bean
