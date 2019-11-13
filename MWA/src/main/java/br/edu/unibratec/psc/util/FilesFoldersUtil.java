@@ -9,6 +9,24 @@ public class FilesFoldersUtil {
 	
 	public static final String TEST_XLSX_FILENAME = "test.xlsx";
 	
+	
+	public static String getAbsolutePathToSrcTestResourceImages_JSF_PNG_File() {
+		String relativePath = 
+			getPathDirectory()								+
+			getRelativePathToSrcTestResourceImagesFolder()	+ 	getFolderSeparator()	+	
+			"jsf.png"
+		;
+		return relativePath;
+	}
+	
+	public static String getRelativePathToSrcTestResourceImagesFolder() {
+		String relativePath = 
+			getRelativePathToSrcTestResourceFolder()	+ 
+			"images"
+		;
+		return relativePath;
+	}
+	
 	public static String getRelativePathToSrcTestResourceFolder() {
 		String relativePath = 
 			getFolderSeparator()	+ "src" + 
