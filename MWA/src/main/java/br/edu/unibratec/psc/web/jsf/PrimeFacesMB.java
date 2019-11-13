@@ -10,6 +10,13 @@ import javax.inject.Named;
 import br.edu.unibratec.psc.model.dao.PessoaDAO;
 import br.edu.unibratec.psc.model.entity.Pessoa;
 
+/**
+ * How to access this Managed Bean:
+ *  - http://localhost:8080/MWA/jsf/primeFaces.xhtml
+ *  
+ * @author pedropk
+ *
+ */
 @Named
 @ViewScoped
 public class PrimeFacesMB implements Serializable {

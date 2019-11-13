@@ -1,9 +1,12 @@
 package br.edu.unibratec.psc.model.entity;
 
-import static br.edu.unibratec.psc.util.UtilMethods.*;
+import static br.edu.unibratec.psc.util.Constants.DATE_PATTERN;
+import static br.edu.unibratec.psc.util.UtilMethods.getDateFromLocalDate;
+import static br.edu.unibratec.psc.util.UtilMethods.isStringValid;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
@@ -17,9 +20,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrePersist;
 
-import static br.edu.unibratec.psc.util.Constants.*;
-
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,31 +35,31 @@ public class Pessoa implements EntityInterface {
 	 */
 	private static final long serialVersionUID = -7739129857761202984L;
 	
-	@Getter()		@Setter
+	@Getter		@Setter
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int			cdMatricula;
 	
-	@Getter()		@Setter
+	@Getter		@Setter
 	private String		nome;
 	
-	@Getter()		@Setter
+	@Getter		@Setter
 	private String		cpf;
 	
 	@JsonbDateFormat(value=DATE_PATTERN)
-	private Date		dataNascimento;
+	private LocalDate		dataNascimento;
 	
 	private String		birthdateString;
 	
-	@Getter()		@Setter
+	@Getter		@Setter
 	private Endereco	endereco;
 	
-	@Getter()		@Setter
+	@Getter		@Setter
 	private String uuid;
 	
 	public Pessoa() {}
 	
-	public Pessoa(String nome, String cpf, Date dataNascimento) {
+	public Pessoa(String nome, String cpf, LocalDate dataNascimento) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -71,6 +71,10 @@ public class Pessoa implements EntityInterface {
 		this.nome = nome;
 		this.cpf = cpf;
 		setDataNascimento(pDtNascimentoString);
+	}
+	
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
 	}
 	
 	public String getDataNascimentoToString() {
@@ -88,9 +92,8 @@ public class Pessoa implements EntityInterface {
 			int year	=	Integer.parseInt(pDtNascimentoString.substring(6, 10));
 			
 			this.dataNascimento =
-				getDateFromLocalDate(
-					LocalDate.of(year, month, day)
-				);
+				LocalDate.of(year, month, day)
+			;
 			//this.dataNascimento = sdf.parse(pDtNascimentoString);
 		}
 	}

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SegundaServlet
  */
-@WebServlet("/SegundaServlet")
+//@WebServlet("/SegundaServlet")
 public class SegundaServlet extends HttpServlet {
 	
 	/**
