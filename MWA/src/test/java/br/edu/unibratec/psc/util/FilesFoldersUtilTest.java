@@ -1,9 +1,7 @@
 package br.edu.unibratec.psc.util;
 
 import static br.edu.unibratec.psc.util.FilesFoldersUtil.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,11 +32,19 @@ public class FilesFoldersUtilTest {
 		
 		// Act
 		FileInputStream fis = createFileInputStream(fullPath);
-		byte[] bytes = fis.readAllBytes();
 		
 		// Assert
 		assertNotNull(fis);
+	}
+	
+	@Test
+	public void testGetByteArrayFromSrcTestResourceImages_JSF_PNG_File() throws IOException {
+		// Act
+		byte[] bytes = getByteArrayFromSrcTestResourceImages_JSF_PNG_File();
+		
+		// Assert
 		assertNotNull(bytes);
+		assertTrue(bytes.length > 0);
 	}
 	
 	@Ignore

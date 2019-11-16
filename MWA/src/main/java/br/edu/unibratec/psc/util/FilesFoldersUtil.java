@@ -99,4 +99,16 @@ public class FilesFoldersUtil {
 		return fileInputStream;
 	}
 	
+	public static byte[] getByteArrayFromSrcTestResourceImages_JSF_PNG_File() throws IOException {
+		byte[] response = null;
+		
+		String fullPath = 
+			FilesFoldersUtil.getAbsolutePathToSrcTestResourceImages_JSF_PNG_File();
+		
+		FileInputStream fis = createFileInputStream(fullPath);
+		response 	= 	fis.readAllBytes();
+		
+		return response;
+	}
+	
 }
