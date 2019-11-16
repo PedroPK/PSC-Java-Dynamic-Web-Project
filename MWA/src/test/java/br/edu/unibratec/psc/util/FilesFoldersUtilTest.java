@@ -1,6 +1,12 @@
 package br.edu.unibratec.psc.util;
 
-import static org.junit.Assert.*;
+import static br.edu.unibratec.psc.util.FilesFoldersUtil.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -18,6 +24,21 @@ public class FilesFoldersUtilTest {
 		assertFalse(fullPath.contains("//"));
 		
 		System.out.println(fullPath);
+	}
+	
+	@Test
+	public void testCreateFileInputStream_GetRelativePathToSrcTestResourceImages_JSF_PNG_File() throws IOException {
+		// Act
+		String fullPath = 
+			FilesFoldersUtil.getAbsolutePathToSrcTestResourceImages_JSF_PNG_File();
+		
+		// Act
+		FileInputStream fis = createFileInputStream(fullPath);
+		byte[] bytes = fis.readAllBytes();
+		
+		// Assert
+		assertNotNull(fis);
+		assertNotNull(bytes);
 	}
 	
 	@Ignore

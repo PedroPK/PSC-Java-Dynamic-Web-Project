@@ -64,13 +64,22 @@ public class FilesFoldersUtil {
 		return fullPath;
 	}
 	
-	public static File createFile( String pFileName ) throws IOException {
+	public static File createFile_SrcTestResource( String pFileName ) throws IOException {
 		File file = 
 			new File(
 					getFullPathToSrcTestResourceFolder() + getFolderSeparator() + pFileName
 			);
 		
 		file.createNewFile();
+		
+		return file;
+	}
+	
+	public static File createFile( String pFullFilePathAndName ) throws IOException {
+		File file = 
+			new File(
+				pFullFilePathAndName
+			);
 		
 		return file;
 	}
@@ -82,6 +91,12 @@ public class FilesFoldersUtil {
 			);
 		
 		return inputStream;
+	}
+	
+	public static FileInputStream createFileInputStream( String pFileName ) throws IOException {
+		FileInputStream fileInputStream = new FileInputStream(createFile(pFileName));
+		
+		return fileInputStream;
 	}
 	
 }
