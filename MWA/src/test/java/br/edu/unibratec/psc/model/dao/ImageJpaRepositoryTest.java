@@ -3,8 +3,11 @@ package br.edu.unibratec.psc.model.dao;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
+import org.h2.tools.Server;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -30,6 +33,20 @@ public class ImageJpaRepositoryTest {
 	
 	@Autowired
 	ImageJpaRepository dao;
+	
+	/**
+	 * This method will create a Web Server to enable access H2 Console
+	 *  - http://localhost:8082/
+	 *  
+	 * @throws SQLException
+	 */
+	@Before
+	public void setupServerH2Console() throws SQLException {
+		Server webServer = Server.createWebServer(
+			"-web", "-webAllowOthers", "-webPort", "8082");
+		
+		webServer.start();
+	}
 	
 	@Ignore
 	@BeforeClass
