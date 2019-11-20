@@ -74,9 +74,13 @@ public class ImageJpaRepositoryTest {
 		Optional<ImageEntity> optionalSelectedImageEntity =  dao.findOne(example);
 		
 		// Assert
-		assertTrue(		optionalSelectedImageEntity.isPresent()					);
-		assertNotNull(	optionalSelectedImageEntity.get()						);
-		assertEquals(	imageEntity,	optionalSelectedImageEntity.get()		);
+		assertTrue(		optionalSelectedImageEntity.isPresent()									);
+		assertNotNull(	optionalSelectedImageEntity.get()										);
+		assertEquals(	imageEntity,	optionalSelectedImageEntity.get()						);
+		
+		// Quantity of Bytes in the Array should be the same as the Image File
+		assertEquals(	18146, 			optionalSelectedImageEntity.get().getPhotoImage().length);
+		
 		//assertNotSame(	imageEntity,	optionalSelectedImageEntity.get()		);
 	}
 	
