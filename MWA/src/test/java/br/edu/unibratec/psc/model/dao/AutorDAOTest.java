@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.awt.print.Book;
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import org.junit.Before;
 import org.junit.Ignore;

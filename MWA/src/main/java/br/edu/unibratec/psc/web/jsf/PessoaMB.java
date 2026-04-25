@@ -2,12 +2,14 @@ package br.edu.unibratec.psc.web.jsf;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 
 import br.edu.unibratec.psc.model.entity.Pessoa;
 import br.edu.unibratec.psc.model.fachada.FachadaRepositorios;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class PessoaMB {
 	
 	Pessoa pessoa = new Pessoa();

@@ -2,6 +2,8 @@ package br.edu.unibratec.tests.selenium.utils;
 
 import static br.edu.unibratec.tests.selenium.utils.SeleniumWebElementsHandler.getElementById;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,7 +41,7 @@ public class SeleniumWebElementsHandler {
 		WebElement response = null;
 		
 		if ( pWebDriver != null && isStringValid(pId) ) {
-			WebDriverWait wait = new WebDriverWait(pWebDriver, pTimeOutSeconds);
+			WebDriverWait wait = new WebDriverWait(pWebDriver, Duration.ofSeconds(pTimeOutSeconds));
 			
 			By byId = By.id(pId);
 			
