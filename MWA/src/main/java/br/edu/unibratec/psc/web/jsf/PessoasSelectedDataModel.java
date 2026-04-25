@@ -2,7 +2,7 @@ package br.edu.unibratec.psc.web.jsf;
 
 import java.util.List;
 
-import javax.faces.model.ListDataModel;
+import jakarta.faces.model.ListDataModel;
 
 import org.primefaces.model.SelectableDataModel;
 
@@ -30,8 +30,8 @@ public class PessoasSelectedDataModel extends ListDataModel<Pessoa> implements S
 		return null;
 	}
 	
-	public Object getRowKey(Pessoa pPessoa) {
-		return pPessoa.getCdMatricula();
+	public String getRowKey(Pessoa pPessoa) {
+		return String.valueOf(pPessoa.getCdMatricula());
 	}
 	
 }

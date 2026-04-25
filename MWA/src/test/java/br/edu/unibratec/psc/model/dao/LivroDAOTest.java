@@ -2,7 +2,7 @@ package br.edu.unibratec.psc.model.dao;
 
 import static org.junit.Assert.*;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import org.junit.Before;
 import org.junit.Ignore;

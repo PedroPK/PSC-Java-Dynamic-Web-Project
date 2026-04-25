@@ -1,326 +1,305 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-							http://maven.apache.org/maven-v4_0_0.xsd">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>br.edu.unibratec</groupId>
-	<artifactId>MWA</artifactId>
-	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>MWA Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+<modelVersion>4.0.0</modelVersion>
+<groupId>br.edu.unibratec</groupId>
+<artifactId>MWA</artifactId>
+<packaging>war</packaging>
+<version>0.0.1-SNAPSHOT</version>
+<name>MWA Maven Webapp</name>
+<url>http://maven.apache.org</url>
 
-	<properties>
-		<!-- Logging -->
-		<slf4j.version>1.7.26</slf4j.version>
-		<javax.json.version>1.1.4</javax.json.version>
-		<selenium.version>3.141.59</selenium.version>
-	</properties>
+<properties>
+<java.version>17</java.version>
+<!-- Override Hibernate to 7.3.2.Final (Spring Boot 3.3.x manages 6.x by default) -->
+<hibernate.version>7.3.2.Final</hibernate.version>
+<!-- Logging -->
+<slf4j.version>2.0.9</slf4j.version>
+</properties>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.0.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+<parent>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-parent</artifactId>
+<version>3.3.6</version>
+<relativePath /> <!-- lookup parent from repository -->
+</parent>
 
-	<dependencies>
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api 
-			- -> <dependency> <groupId>javax.servlet</groupId> <artifactId>javax.servlet-api</artifactId> 
-			<version>4.0.1</version> <scope>provided</scope> </dependency> -->
+<dependencies>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.4.24.Final</version>
-		</dependency>
+<!-- ===== Spring Boot Starters ===== -->
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.4.5.Final</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-data-jpa</artifactId>
+<exclusions>
+<exclusion>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-logging</artifactId>
+</exclusion>
+</exclusions>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>2.2.220</version>
-			<scope>test</scope>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
+<exclusions>
+<exclusion>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-logging</artifactId>
+</exclusion>
+</exclusions>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>5.0.0</version>
-		</dependency>
+<!-- ===== Hibernate / JPA ===== -->
 
-		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf</artifactId>
-			<version>3.1.4.RELEASE</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+<!-- hibernate-entitymanager was removed in Hibernate 6; hibernate-core now covers JPA -->
+<dependency>
+<groupId>org.hibernate.orm</groupId>
+<artifactId>hibernate-core</artifactId>
+<version>${hibernate.version}</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version>
-		</dependency>
+<!-- Jakarta Persistence 3.2 is required by Hibernate 7 (Spring Boot 3.x manages 3.1) -->
+<dependency>
+<groupId>jakarta.persistence</groupId>
+<artifactId>jakarta.persistence-api</artifactId>
+<version>3.2.0</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-api -->
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.2.20</version>
-		</dependency>
+<!-- ===== Database ===== -->
 
-		<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
-		<dependency>
-			<groupId>com.sun.faces</groupId>
-			<artifactId>jsf-impl</artifactId>
-			<version>2.2.20</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+<dependency>
+<groupId>com.h2database</groupId>
+<artifactId>h2</artifactId>
+<scope>test</scope>
+</dependency>
 
-		<!-- https://www.primefaces.org/showcase/getstarted.xhtml -->
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>8.0</version>
-		</dependency>
+<!-- ===== Web / UI ===== -->
 
-		<!-- https://mvnrepository.com/artifact/javax.faces/jsf-api - -> <dependency> 
-			<groupId>javax.faces</groupId> <artifactId>jsf-api</artifactId> <version>2.1</version> 
-			<scope>provided</scope> </dependency> -->
+<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+<dependency>
+<groupId>org.webjars</groupId>
+<artifactId>bootstrap</artifactId>
+<version>5.0.0</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-api - -> <dependency> 
-			<groupId>com.sun.faces</groupId> <artifactId>jsf-api</artifactId> <version>2.2.18</version> 
-			</dependency> -->
+<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+<dependency>
+<groupId>org.thymeleaf</groupId>
+<artifactId>thymeleaf</artifactId>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl - -> <dependency> 
-			<groupId>com.sun.faces</groupId> <artifactId>jsf-impl</artifactId> <version>2.2.18</version> 
-			</dependency> -->
+<!-- ===== Jakarta Faces (replaces com.sun.faces jsf-api/jsf-impl 2.2) ===== -->
 
-		<!-- https://mvnrepository.com/artifact/javax.enterprise/cdi-api -->
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<version>2.0</version>
-			<scope>provided</scope>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/jakarta.faces/jakarta.faces-api -->
+<dependency>
+<groupId>jakarta.faces</groupId>
+<artifactId>jakarta.faces-api</artifactId>
+<version>4.0.1</version>
+<scope>provided</scope>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.jboss.weld/weld-core - -> <dependency> 
-			<groupId>org.jboss.weld</groupId> <artifactId>weld-core</artifactId> <version>2.4.8.Final</version> 
-			</dependency> -->
+<!-- https://mvnrepository.com/artifact/org.glassfish/jakarta.faces -->
+<dependency>
+<groupId>org.glassfish</groupId>
+<artifactId>jakarta.faces</artifactId>
+<version>4.0.7</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.jboss.weld.se/weld-se-core 
-			- -> <dependency> <groupId>org.jboss.weld.se</groupId> <artifactId>weld-se-core</artifactId> 
-			<version>3.0.5.Final</version> </dependency> -->
+<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+<!-- PrimeFaces 14.x requires Jakarta Faces 4.0 -->
+<dependency>
+<groupId>org.primefaces</groupId>
+<artifactId>primefaces</artifactId>
+<version>14.0.0</version>
+<classifier>jakarta</classifier>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.jboss.weld.se/weld-se-shaded 
-			- -> <dependency> <groupId>org.jboss.weld.se</groupId> <artifactId>weld-se-shaded</artifactId> 
-			<version>3.0.5.Final</version> </dependency> -->
+<!-- ===== Jakarta CDI (replaces javax.enterprise:cdi-api) ===== -->
 
-		<!-- https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet -->
-		<dependency>
-			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>2.4.8.Final</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api -->
+<dependency>
+<groupId>jakarta.enterprise</groupId>
+<artifactId>jakarta.enterprise.cdi-api</artifactId>
+<version>4.0.1</version>
+<scope>provided</scope>
+</dependency>
 
-		<!-- https://www.primefaces.org/showcase/getstarted.xhtml - -> <dependency> 
-			<groupId>org.primefaces</groupId> <artifactId>primefaces</artifactId> <version>6.2</version> 
-			</dependency> -->
+<!-- https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core -->
+<!-- Weld 5.x supports CDI 4.0 / Jakarta EE 10 -->
+<dependency>
+<groupId>org.jboss.weld.servlet</groupId>
+<artifactId>weld-servlet-core</artifactId>
+<version>5.1.0.Final</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.primefaces.themes/all-themes 
-			- -> <dependency> <groupId>org.primefaces.themes</groupId> <artifactId>all-themes</artifactId> 
-			<version>1.0.10</version> </dependency> -->
+<!-- ===== Jakarta EE API (replaces javax:javaee-api) ===== -->
 
-		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>8.0.1</version>
-			<scope>provided</scope>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-api -->
+<dependency>
+<groupId>jakarta.platform</groupId>
+<artifactId>jakarta.jakartaee-api</artifactId>
+<version>10.0.0</version>
+<scope>provided</scope>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
-			<version>${javax.json.version}</version>
-		</dependency>
+<!-- ===== Jakarta JSON (replaces javax.json + org.glassfish:javax.json) ===== -->
 
-		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.json -->
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>${javax.json.version}</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/jakarta.json/jakarta.json-api -->
+<dependency>
+<groupId>jakarta.json</groupId>
+<artifactId>jakarta.json-api</artifactId>
+<version>2.1.3</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.json.bind/javax.json.bind-api -->
-		<dependency>
-			<groupId>javax.json.bind</groupId>
-			<artifactId>javax.json.bind-api</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.eclipse/yasson -->
-		<dependency>
-			<groupId>org.eclipse</groupId>
-			<artifactId>yasson</artifactId>
-			<version>1.0.3</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.json -->
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.json</artifactId>
-			<version>${javax.json.version}</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.eclipse.parsson/parsson -->
+<dependency>
+<groupId>org.eclipse.parsson</groupId>
+<artifactId>parsson</artifactId>
+<version>1.1.6</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.9</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/jakarta.json.bind/jakarta.json.bind-api -->
+<dependency>
+<groupId>jakarta.json.bind</groupId>
+<artifactId>jakarta.json.bind-api</artifactId>
+<version>3.0.1</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.eclipse/yasson -->
+<!-- Jakarta JSON-B reference implementation -->
+<dependency>
+<groupId>org.eclipse</groupId>
+<artifactId>yasson</artifactId>
+<version>3.0.3</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>test</scope>
-		</dependency>
+<!-- ===== Jakarta JAXB (replaces javax.xml.bind:jaxb-api) ===== -->
 
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>test</scope>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+<dependency>
+<groupId>jakarta.xml.bind</groupId>
+<artifactId>jakarta.xml.bind-api</artifactId>
+<version>4.0.2</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>${selenium.version}</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
+<dependency>
+<groupId>org.glassfish.jaxb</groupId>
+<artifactId>jaxb-runtime</artifactId>
+<version>4.0.5</version>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-chrome-driver</artifactId>
-			<version>${selenium.version}</version>
-		</dependency>
+<!-- ===== Google Gson ===== -->
 
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-firefox-driver</artifactId>
-			<version>${selenium.version}</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+<groupId>com.google.code.gson</groupId>
+<artifactId>gson</artifactId>
+<version>2.10.1</version>
+</dependency>
 
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-remote-driver</artifactId>
-			<version>${selenium.version}</version>
-			<scope>test</scope>
-		</dependency>
+<!-- ===== Logging ===== -->
 
-		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest</artifactId>
-			<version>2.1</version>
-			<scope>test</scope>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+<dependency>
+<groupId>org.slf4j</groupId>
+<artifactId>slf4j-api</artifactId>
+</dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.8</version>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+<dependency>
+<groupId>org.slf4j</groupId>
+<artifactId>slf4j-simple</artifactId>
+<scope>test</scope>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api 
-			- -> <dependency> <groupId>org.junit.jupiter</groupId> <artifactId>junit-jupiter-api</artifactId> 
-			<version>5.5.0-M1</version> <scope>test</scope> </dependency> -->
+<!-- ===== Selenium ===== -->
 
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
-			<scope>test</scope>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-java</artifactId>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.5.12</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-chrome-driver</artifactId>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.1.8.RELEASE</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver -->
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-firefox-driver</artifactId>
+</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.1.8.RELEASE</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-remote-driver</artifactId>
+<scope>test</scope>
+</dependency>
 
-	</dependencies>
-	<build>
-		<finalName>MWA</finalName>
+<!-- ===== Testing ===== -->
 
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id></id>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+<dependency>
+<groupId>org.hamcrest</groupId>
+<artifactId>hamcrest</artifactId>
+<scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+<groupId>junit</groupId>
+<artifactId>junit</artifactId>
+<version>4.13.2</version>
+<scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-test</artifactId>
+<scope>test</scope>
+<exclusions>
+<exclusion>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-logging</artifactId>
+</exclusion>
+</exclusions>
+</dependency>
+
+<!-- ===== Lombok ===== -->
+
+<dependency>
+<groupId>org.projectlombok</groupId>
+<artifactId>lombok</artifactId>
+<optional>true</optional>
+</dependency>
+
+</dependencies>
+
+<build>
+<finalName>MWA</finalName>
+
+<plugins>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-source-plugin</artifactId>
+<executions>
+<execution>
+<id></id>
+</execution>
+</executions>
+</plugin>
+</plugins>
+</build>
 
 </project>

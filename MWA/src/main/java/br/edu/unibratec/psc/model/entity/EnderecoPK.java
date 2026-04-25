@@ -2,7 +2,7 @@ package br.edu.unibratec.psc.model.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class EnderecoPK implements Serializable {

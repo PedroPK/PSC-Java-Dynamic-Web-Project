@@ -2,11 +2,11 @@ package br.edu.unibratec.psc.web.jsf;
 
 import java.util.regex.Pattern;
 
-import javax.faces.application.NavigationHandler;
-import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
-import javax.faces.event.PhaseListener;
+import jakarta.faces.application.NavigationHandler;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.PhaseEvent;
+import jakarta.faces.event.PhaseId;
+import jakarta.faces.event.PhaseListener;
 
 public class AuthPhaseListener implements PhaseListener {
 	
