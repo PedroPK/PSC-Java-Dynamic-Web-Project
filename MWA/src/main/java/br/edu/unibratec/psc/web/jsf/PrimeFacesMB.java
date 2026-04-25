@@ -2,10 +2,10 @@ package br.edu.unibratec.psc.web.jsf;
 
 import java.io.Serializable;
 
-import javax.faces.component.html.HtmlDataTable;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.faces.component.html.HtmlDataTable;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import br.edu.unibratec.psc.model.dao.PessoaDAO;
 import br.edu.unibratec.psc.model.entity.Pessoa;
