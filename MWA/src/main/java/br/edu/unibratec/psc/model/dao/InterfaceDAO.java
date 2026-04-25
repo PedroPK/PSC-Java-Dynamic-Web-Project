@@ -1,6 +1,6 @@
 package br.edu.unibratec.psc.model.dao;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import br.edu.unibratec.psc.model.entity.EntityInterface;
 
